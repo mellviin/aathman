@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'ITC Garamond Std Condensed Light Italic';
+  src: url('/fonts/ITCGaramondStdCondensedLightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoreSansD';
+  src: url('/fonts/CoreSansD.woff2') format('woff2');
+  font-display: swap;
+}
+
+:root {
+  --cream-base: #f7efe2;
+  --cream-soft: #f6f1e8;
+  --cream-warm: #f1e4d8;
+  --paper: #f2e8dd;
+  --ink: #111111;
+  --charcoal: #1e1a18;
+  --espresso: #2b2620;
+  --gold-muted: #b7a07f;
+  --beige-warm: #dcc4aa;
+  --brown-faded: #8b7864;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--charcoal);
+  background-color: var(--cream-base);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 251, 245, 0.95), rgba(246, 241, 232, 0.97) 36%, transparent 100%),
+    linear-gradient(180deg, rgba(255, 253, 247, 0.95), rgba(243, 235, 224, 0.95) 45%, rgba(247, 237, 226, 0.96) 100%);
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.14), transparent 22%),
+    radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.03), transparent 26%);
+  opacity: 0.18;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.03), transparent 18%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent 60%);
+  opacity: 0.08;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+button,
+input,
+textarea,
+a {
+  font-family: inherit;
+}
+
+button,
+input,
+textarea {
+  transition: color 0.28s ease, border-color 0.28s ease, background-color 0.28s ease, transform 0.28s ease;
+}
+
+.section-label {
+  font-family: 'CoreSansD', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brown-faded);
+}
+
+.section-title {
+  font-family: 'CoreSansD', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  color: var(--ink);
+}
+
+.section-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1vw + 0.1rem, 1.08rem);
+  line-height: 1.95;
+  color: var(--espresso);
+  max-width: 68ch;
+}
+
+.section-copy-compact {
+  font-family: 'Inter', sans-serif;
+  color: var(--espresso);
+  line-height: 1.95;
+}
+
+.premium-link {
+  color: var(--espresso);
+  position: relative;
+  transition: color 0.28s ease;
+}
+
+.premium-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: rgba(183, 160, 127, 0.26);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.premium-link:hover {
+  color: var(--ink);
+}
+
+.premium-link:hover::after {
+  opacity: 1;
+}
+
+.premium-cta {
+  font-family: 'CoreSansD', sans-serif;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  background: rgba(183, 160, 127, 0.12);
+  color: var(--charcoal);
+  border: 1px solid rgba(183, 160, 127, 0.28);
+  backdrop-filter: blur(8px);
+}
+
+.premium-cta:hover {
+  background: rgba(183, 160, 127, 0.18);
+}
+
+.image-frame {
+  transition: transform 0.95s ease, box-shadow 0.95s ease;
+}
+
+.image-frame img {
+  transform-origin: center center;
+}
+
+.image-frame:hover img {
+  transform: scale(1.03);
+  filter: contrast(1.03) saturate(1.05);
+}
+
+.premium-video-card {
+  border: 1px solid rgba(183, 160, 127, 0.16);
+  box-shadow: 0 20px 80px rgba(15, 11, 8, 0.08);
+}
+
+.premium-video-card:hover {
+  transform: translateY(-2px);
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  z-index: 2;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(42, 38, 34, 0.05) 0.5px, transparent 1px),
+    radial-gradient(circle at 80% 40%, rgba(42, 38, 34, 0.035) 0.6px, transparent 1px);
+  background-size: 4px 4px, 5px 5px;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    letter-spacing: -0.02em;
+  }
+}
