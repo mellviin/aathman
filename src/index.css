@@ -2,17 +2,15 @@
 @import 'tailwindcss';
 
 @font-face {
+  font-family: 'CoreSansD';
+  src: url('/fonts/CoreSansD.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'ITC Garamond Std Condensed Light Italic';
   src: url('/fonts/ITCGaramondStdCondensedLightItalic.woff2') format('woff2');
   font-weight: 300;
   font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'CoreSansD';
-  src: url('/fonts/CoreSansD.woff2') format('woff2');
-  font-display: swap;
 }
 
 :root {
