@@ -1,5 +1,7 @@
 import { OptimizedImage } from './OptimizedImage'
 import { memo } from 'react'
+import { motion } from 'framer-motion'
+import { imageReveal, viewportSettings } from '../../utils/animationVariants'
 
 export const EditorialImage = memo(function EditorialImage({
   image,
@@ -9,8 +11,13 @@ export const EditorialImage = memo(function EditorialImage({
   overlay = false,
   monochrome = false,
   children,
+  disableAnimation = false,
 }) {
-  return (
+  // For hero and priority images, use immediate animations
+  // For grid images, use scroll-triggered reveals
+  const shouldAnimate = !disableAnimation && !priority
+  
+  const imageElement = (
     <OptimizedImage
       src={image}
       alt={alt}
@@ -22,4 +29,20 @@ export const EditorialImage = memo(function EditorialImage({
       {children}
     </OptimizedImage>
   )
+
+  if (shouldAnimate) {
+    return (
+      <motion.div
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportSettings}
+        variants={imageReveal}
+        className={className}
+      >
+        {imageElement}
+      </motion.div>
+    )
+  }
+
+  return imageElement
 })

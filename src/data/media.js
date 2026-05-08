@@ -13,8 +13,8 @@
 // ---------------------------------------------------------------------------
 
 // -- Uncomment and adjust these imports once the asset files are in place: --
-import heroImage        from '../assets/images/hero/DSC07761 copy.jpg'
-import portraitM1       from '../assets/images/portraits/DSC07519.jpg.jpeg'
+import heroImage        from '../assets/images/hero/hero.webp'
+import portraitM1       from '../assets/images/portraits/portrait1.webp'
 // import bwA1             from '../assets/images/bw/a1.jpg'
 // import bwPdsPost        from '../assets/images/bw/PDS POST.jpg'
 import giflogo              from '../assets/videos/Logo Animation 4K.mp4'

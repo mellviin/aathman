@@ -1,12 +1,19 @@
 import { memo } from 'react'
+import { motion } from 'framer-motion'
 import { OptimizedImage } from './OptimizedImage'
+import { imageReveal, hoverImageOpacity, viewportSettings } from '../../utils/animationVariants'
 
 function EditorialVideoCard({ item, activeVideoId, setActiveVideoId, className = '' }) {
   const isActive = activeVideoId === item.id
 
   return (
-    <article
-      className={`video-card group relative overflow-hidden border border-[#b7a07f20] bg-[#faf4ec]/20 shadow-[0_20px_80px_rgba(15,11,8,0.08)] transition-transform duration-300 ${className}`}
+    <motion.article
+      initial="initial"
+      whileInView="animate"
+      whileHover="whileHover"
+      viewport={viewportSettings}
+      variants={imageReveal}
+      className={`video-card group relative overflow-hidden border border-[#b7a07f20] bg-[#faf4ec]/20 shadow-[0_20px_80px_rgba(15,11,8,0.08)] ${className}`}
     >
       {isActive ? (
         // Only load the video element once the user taps play —
@@ -49,14 +56,17 @@ function EditorialVideoCard({ item, activeVideoId, setActiveVideoId, className =
       </div>
 
       {/* Play / pause button */}
-      <button
+      <motion.button
         onClick={() => setActiveVideoId(isActive ? null : item.id)}
-        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#efe6d7b0] bg-[#1111113d] text-[#f6ede0] shadow-[0_16px_30px_rgba(0,0,0,0.18)] transition duration-300 hover:bg-[#11111160]"
+        whileHover={{ scale: 1.08, opacity: 0.95 }}
+        whileTap={{ scale: 0.96 }}
+        transition={{ duration: 0.3 }}
+        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#efe6d7b0] bg-[#1111113d] text-[#f6ede0] shadow-[0_16px_30px_rgba(0,0,0,0.18)] hover:bg-[#11111160]"
         aria-label={isActive ? 'Pause film preview' : 'Play film preview'}
       >
         {isActive ? '⏸' : '▶'}
-      </button>
-    </article>
+      </motion.button>
+    </motion.article>
   )
 }
 
