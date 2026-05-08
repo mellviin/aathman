@@ -1,113 +1,120 @@
-import { useEffect, useMemo, useState } from 'react'
-import { memo } from 'react'
+import { memo, useRef, useState } from 'react'
 
-const isRemoteImage = (src) => typeof src === 'string' && /^https?:\/\//.test(src)
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
 
-const buildRemoteImageUrl = (src, width, format = 'webp') => {
+const isRemote = (src) => typeof src === 'string' && /^https?:\/\//.test(src)
+
+/**
+ * Pexels URLs already carry ?auto=compress&cs=tinysrgb&w=…&h=…
+ * We just need to override `w` (and optionally `h`) for each breakpoint.
+ * We do NOT add `fm=webp` — Pexels serves WebP automatically when the browser
+ * sends `Accept: image/webp` (which all modern browsers do).
+ */
+const pexelsWidth = (src, w) => {
   try {
     const url = new URL(src)
-    if (url.hostname.includes('pexels.com')) {
-      if (url.search) {
-        url.searchParams.set('fm', format)
-        url.searchParams.set('w', width.toString())
-        url.searchParams.set('auto', 'compress')
-      } else {
-        url.search = `fm=${format}&w=${width}&auto=compress`
-      }
-      return url.toString()
-    }
-
-    if (url.search) {
-      url.searchParams.set('fm', format)
-      url.searchParams.set('w', width.toString())
-      return url.toString()
-    }
-
-    return `${src}?fm=${format}&w=${width}`
+    url.searchParams.set('w', w)
+    url.searchParams.set('auto', 'compress')
+    // Remove explicit height so the CDN scales proportionally
+    url.searchParams.delete('h')
+    return url.toString()
   } catch {
     return src
   }
 }
 
+/**
+ * Build a srcSet for Pexels images at sensible breakpoints.
+ * Returns '' for local/imported assets (Vite handles those).
+ */
 const buildSrcSet = (src) => {
-  if (!src || !isRemoteImage(src)) return ''
-  const widths = [480, 760, 1080, 1440]
-  return widths.map((width) => `${buildRemoteImageUrl(src, width)} ${width}w`).join(', ')
+  if (!src || !isRemote(src)) return ''
+  if (!src.includes('pexels.com')) return ''
+  return [480, 800, 1200, 1600, 2000]
+    .map((w) => `${pexelsWidth(src, w)} ${w}w`)
+    .join(', ')
 }
 
+/** Default src — for Pexels use 1200px; for locals use as-is. */
 const resolveSrc = (src) => {
-  if (!src) return src
-  if (isRemoteImage(src)) {
-    return buildRemoteImageUrl(src, 1080)
-  }
-  if (typeof src === 'string') {
-    return src
-  }
-  return src
+  if (!src) return ''
+  if (isRemote(src) && src.includes('pexels.com')) return pexelsWidth(src, 1200)
+  return typeof src === 'string' ? src : src // imported asset → already a hashed URL string
 }
 
-const buildPlaceholder = (src) => {
-  if (!src) return ''
-  if (isRemoteImage(src)) {
-    return buildRemoteImageUrl(src, 60)
-  }
-  return src
-}
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
 
 export const OptimizedImage = memo(function OptimizedImage({
   src,
   alt,
   className = '',
   priority = false,
-  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px',
+  /**
+   * sizes tells the browser how wide the image will actually be rendered.
+   * Override per call-site for more precise hints (saves bandwidth on mobile).
+   */
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw',
   monochrome = false,
   overlay = false,
   children,
 }) {
   const [loaded, setLoaded] = useState(false)
-  const resolvedSrc = useMemo(() => resolveSrc(src), [src])
-  const srcSet = useMemo(() => buildSrcSet(src), [src])
-  const placeholder = useMemo(() => buildPlaceholder(src), [src])
+  const imgRef = useRef(null)
 
-  useEffect(() => {
-    setLoaded(false)
-  }, [resolvedSrc])
-
-  const dataStyle = {
-    backgroundImage: placeholder
-      ? `linear-gradient(rgba(246,241,232,0.3), rgba(246,241,232,0.3)), url(${placeholder})`
-      : undefined,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+  // If the browser already has the image cached, `onLoad` won't fire again —
+  // check `.complete` synchronously so we never show a blank flash.
+  const handleRef = (el) => {
+    imgRef.current = el
+    if (el && el.complete && el.naturalWidth > 0) setLoaded(true)
   }
+
+  const resolvedSrc = resolveSrc(src)
+  const srcSet      = buildSrcSet(src)
 
   return (
     <div
       className={`optimized-image relative overflow-hidden group image-frame ${className} ${loaded ? 'loaded' : 'loading'}`}
-      style={dataStyle}
+      // Cream-toned background shows while the image loads — no extra HTTP request
+      style={{ backgroundColor: '#f2ece2' }}
     >
       <picture>
-        {isRemoteImage(src) && srcSet && (
-          <source srcSet={srcSet} sizes={sizes} type="image/webp" />
+        {srcSet && (
+          <source
+            srcSet={srcSet}
+            sizes={sizes}
+            // No type="image/webp" here — the <source> is already for Pexels
+            // which auto-negotiates format. Adding the wrong type causes some
+            // browsers to ignore the srcSet entirely.
+          />
         )}
         <img
+          ref={handleRef}
           src={resolvedSrc}
           alt={alt}
           loading={priority ? 'eager' : 'lazy'}
-          fetchPriority={priority ? 'high' : 'auto'}
-          decoding="async"
-          className="h-full w-full object-cover object-center transition-opacity duration-700 ease-out will-change-auto"
+          fetchPriority={priority ? 'high' : 'low'}
+          decoding={priority ? 'sync' : 'async'}
+          sizes={sizes}
+          className="h-full w-full object-cover object-center"
           onLoad={() => setLoaded(true)}
           style={{
             opacity: loaded ? 1 : 0,
-            transition: 'opacity 0.45s ease-out',
+            transition: 'opacity 0.4s ease-out',
             filter: monochrome ? 'grayscale(100%) contrast(1.14) brightness(1.02)' : 'none',
+            // Only hint GPU compositing for above-the-fold priority images
+            willChange: priority ? 'opacity' : 'auto',
           }}
         />
       </picture>
+
       {overlay && (
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#11111110] opacity-30 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#11111110] opacity-30" />
       )}
+
       {children}
     </div>
   )
