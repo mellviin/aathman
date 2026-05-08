@@ -80,7 +80,10 @@ function SplashScreen() {
           <span className="font-['CoreSansD'] font-bold lowercase tracking-[-0.08em] text-[#111111] text-xl md:text-7xl align-middle">
             aathman
           </span>
-          <span className="font-['ITC_Garamond_Std_Condensed_Light_Italic'] italic tracking-[0.0em] text-[#111111] text-2xl md:text-7xl align-middle">
+          <span
+            style={{ fontFamily: 'ITC Garamond Std Condensed Light Italic' }}
+            className="italic tracking-[0em] text-[#111111] text-2xl md:text-7xl align-middle"
+          >
             studios
           </span>
         </h1>
