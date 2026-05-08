@@ -19,6 +19,13 @@ import portraitM1       from '../assets/images/portraits/portrait1.webp'
 // import bwPdsPost        from '../assets/images/bw/PDS POST.jpg'
 import giflogo              from '../assets/videos/Logo Animation 4K.mp4'
 import logo           from '../assets/images/aathman_logo.png' // Placeholder until a real GIF is created from the video
+import last_big       from '../assets/images/bw/last_big.webp'
+//BLACK AND WHITE SECTION IMAGES
+import bw1            from '../assets/images/bw/a1.webp'
+import bw2            from '../assets/images/bw/a3.webp'
+import bw3            from '../assets/images/bw/b3.webp'
+
+
 
 // Temporary Pexels placeholders used until local assets are imported above.
 const _HERO_IMAGE    = heroImage
@@ -27,6 +34,10 @@ const _BW_A1         = 'https://images.pexels.com/photos/1024975/pexels-photo-10
 const _BW_PDS_POST   = 'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800'
 const _LOGO_GIF      = giflogo
 const _LOGO          = logo
+const _LAST_BIG       = last_big
+const _BW_1        = bw1
+const _BW_2        = bw2
+const _BW_3        = bw3
 
 // Splash video — replace with your own hosted asset when available.
 const _SPLASH_VIDEO  = 'https://player.vimeo.com/external/434045526.sd.mp4?s=88e69b3d9a3f0e91618f5f54e4fcb4f252682f49&profile_id=164&oauth2_token_id=57447761'
@@ -144,14 +155,14 @@ export const mediaLibrary = {
   ],
 
   monochrome: [
-    'https://images.pexels.com/photos/1779418/pexels-photo-1779418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1300&w=1800',
-    _BW_A1,
-    'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1300&w=1800',
+    _BW_1,
+    _BW_2,
+    _BW_3,
   ],
 
   destinations: ['Lake Como', 'Jaipur', 'Udaipur', 'Tuscany', 'Santorini', 'Mussoorie'],
 
   booking: {
-    image: _BW_PDS_POST,
+image: _LAST_BIG,
   },
 }
