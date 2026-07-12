@@ -42,7 +42,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   color: var(--charcoal);
   background-color: var(--cream-base);
   background-image:
@@ -79,7 +79,6 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Cormorant Garamond', serif;
   color: var(--ink);
   letter-spacing: 0.02em;
   line-height: 1.05;
@@ -107,15 +106,15 @@ textarea {
 }
 
 .section-title {
-  font-family: 'CoreSansD', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 0.98;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
   color: var(--ink);
 }
 
 .section-copy {
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
   font-size: clamp(1rem, 1vw + 0.1rem, 1.08rem);
   line-height: 1.95;
   color: var(--espresso);
@@ -123,7 +122,7 @@ textarea {
 }
 
 .section-copy-compact {
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
   color: var(--espresso);
   line-height: 1.95;
 }

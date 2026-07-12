@@ -131,17 +131,33 @@ function HeroStart() {
 
       {/* ── Top navigation bar ── */}
       <motion.header
-        className="absolute left-0 right-0 top-0 z-20 px-5 pt-5 md:px-12 md:pt-8"
+        className="fixed inset-x-0 top-0 z-50"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.1, delay: 0.2 }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between border border-[#f2ede37a] bg-[#1111111a] px-4 py-3 backdrop-blur-[2px] md:px-6">
-          {/* Brand mark — single <h1> for the page */}
+        {/* Soft blur background */}
+        <div
+          className="
+            absolute inset-0
+            -z-10
+            backdrop-blur-[4px]
+            bg-gradient-to-b
+            from-white/10
+            via-white/5
+            to-transparent
+            pointer-events-none
+          "
+        />
+
+        <div className="relative flex items-center justify-between px-10 py-6 lg:px-16">
+          {/* Brand mark */}
           <div className="flex items-center space-x-8">
             <h1 className="text-2xl font-bold tracking-wide">
-              <span className="font-['CoreSansD'] lowercase tracking-[-0.08em] text-[#111111]">aathman</span>
-              <span className="font-['ITC_Garamond_Std_Condensed_Light_Italic'] italic tracking-[0.0em] text-[#111111]">
+              <span className="font-['CoreSansD'] lowercase tracking-[-0.08em] text-[#111111]">
+                aathman
+              </span>
+              <span className="font-['ITC_Garamond_Std_Condensed_Light_Italic'] italic tracking-[0em] text-[#111111]">
                 studios
               </span>
             </h1>
@@ -162,11 +178,8 @@ function HeroStart() {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="text-[#F5F1EB] hover:text-white transition-colors duration-300 tracking-[0.08em] text-sm"
-                whileHover={{
-                  color: '#ffffff',
-                }}
-                transition={{ duration: 0.3 }}
+                className="text-[#111111] hover:text-[#8b7864] tracking-[0.08em] text-sm transition-colors duration-300"
+                whileHover={{ y: -2 }}
               >
                 {item.label}
               </motion.a>
@@ -378,7 +391,7 @@ export default function App() {
                       <div className="flex items-center justify-between border-t border-[#b7a07f50] pt-3">
                         <div>
                           <p className="section-label">{film.location}</p>
-                          <h3 className="text-[1.45rem]">{film.title}</h3>
+                          <h3 className="text-[1.45rem] font-['Cormorant_Garamond'] font-medium">{film.title}</h3>
                           <p className="mt-1 text-xs text-[#2a2622]">{film.phrase}</p>
                         </div>
                         <span className="border border-[#b7a07f70] px-3 py-1 text-[10px] tracking-[0.18em] text-[#2a2622]">
