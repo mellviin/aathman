@@ -15,22 +15,45 @@
 // -- Uncomment and adjust these imports once the asset files are in place: --
 import heroImage        from '../assets/images/hero/hero.webp'
 import portraitM1       from '../assets/images/portraits/portrait1.webp'
+import portraitM2       from '../assets/images/portraits/DSC07621.webp'
+import portraitM3       from '../assets/images/portraits/DSC06445.jpg'
+import portraitM4       from '../assets/images/portraits/DSC08294.jpg'
+import portraitM5       from '../assets/images/portraits/DSC09441.jpg'
+import portraitM6       from '../assets/images/portraits/DSC08023.jpg'
+import portraitM7       from '../assets/images/portraits/DSC09221.jpg'
+
 // import bwA1             from '../assets/images/bw/a1.jpg'
 // import bwPdsPost        from '../assets/images/bw/PDS POST.jpg'
 import giflogo              from '../assets/videos/Logo Animation 4K.mp4'
 import logo           from '../assets/images/aathman_logo.png' // Placeholder until a real GIF is created from the video
-import last_big       from '../assets/images/bw/last_big.webp'
+import last_big       from '../assets/images/portraits/DSC09490.webp'
 //BLACK AND WHITE SECTION IMAGES
 import bw1            from '../assets/images/bw/a1.webp'
 import bw2            from '../assets/images/bw/a3.webp'
 import bw3            from '../assets/images/bw/b3.webp'
+import bw4            from '../assets/images/portraits/DSC02273.jpg'
+import bw5            from '../assets/images/portraits/DSC08269.jpg'
+import portrait_port  from '../assets/images/portraits/port.webp'
+import portrait_port1  from '../assets/images/portraits/DSC08773.webp'
+
+//destination wedding
+import dest1          from '../assets/images/portraits/DSC08381.jpg'
+import dest2          from '../assets/images/portraits/DSC07432.jpg'
+import dest3          from '../assets/images/portraits/DSC08683.jpg'
+import dest4          from '../assets/images/portraits/DSC08338.jpg'
+
+//Closing Video
+import close          from '../assets/videos/abel.mp4'
+import thumbnail      from '../assets/images/portraits/thumbnail.png'
 
 
 
 // Temporary Pexels placeholders used until local assets are imported above.
 const _HERO_IMAGE    = heroImage
 const _PORTRAIT_M1   = portraitM1
-const _BW_A1         = 'https://images.pexels.com/photos/1024975/pexels-photo-1024975.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1300&w=1800'
+const _PORTRAIT_M2   = portraitM2
+const _port_         = portrait_port
+const _port_1        = portrait_port1
 const _BW_PDS_POST   = 'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800'
 const _LOGO_GIF      = giflogo
 const _LOGO          = logo
@@ -38,6 +61,20 @@ const _LAST_BIG       = last_big
 const _BW_1        = bw1
 const _BW_2        = bw2
 const _BW_3        = bw3
+const _BW_4        = bw4
+const _BW_5        = bw5
+const _DS_1        = dest1
+const _DS_2        = dest2
+const _DS_3        = dest3
+const _DS_4        = dest4
+const _port_2      = portraitM3
+const _port_3      = portraitM4
+const _port_4      = portraitM5
+const _port_5      = portraitM6
+const _port_6      = portraitM7
+const _CLOSE       = close
+const _THUMB       = thumbnail
+
 
 // Splash video — replace with your own hosted asset when available.
 const _SPLASH_VIDEO  = 'https://player.vimeo.com/external/434045526.sd.mp4?s=88e69b3d9a3f0e91618f5f54e4fcb4f252682f49&profile_id=164&oauth2_token_id=57447761'
@@ -59,16 +96,17 @@ export const mediaLibrary = {
   },
 
   philosophy: {
-    image: 'https://images.pexels.com/photos/2659360/pexels-photo-2659360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800',
+    image: _port_,
+    image1: _port_6,
   },
 
   mosaic: [
-    { id: 'm1', image: _PORTRAIT_M1 },
-    { id: 'm2', image: 'https://images.pexels.com/photos/2253842/pexels-photo-2253842.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1600' },
-    { id: 'm3', image: 'https://images.pexels.com/photos/3137072/pexels-photo-3137072.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1600&w=1200' },
-    { id: 'm4', image: 'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800' },
-    { id: 'm5', image: 'https://images.pexels.com/photos/265920/pexels-photo-265920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1400&w=1100' },
-    { id: 'm6', image: 'https://images.pexels.com/photos/1024975/pexels-photo-1024975.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1700' },
+    { id: 'm1', image: _port_3 },
+    { id: 'm2', image: _port_2 },
+    { id: 'm3', image: _port_4 },
+    { id: 'm4', image: _port_ },
+    { id: 'm5', image: _port_5 },
+    { id: 'm6', image:  _port_1},
   ],
 
   films: [
@@ -126,8 +164,8 @@ export const mediaLibrary = {
       location: 'Jaipur',
       year: '2024',
       runtime: '03:31',
-      phrase: 'Temple bells and silk in golden hush.',
-      image: 'https://images.pexels.com/photos/2659360/pexels-photo-2659360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800',
+      phrase: 'Video 1',
+      image: _LOGO,
       video: 'https://player.vimeo.com/external/377508802.sd.mp4?s=63f3ca61f6f485f50f68c774f06f9f2f8efde6cd&profile_id=164&oauth2_token_id=57447761',
     },
     {
@@ -145,24 +183,32 @@ export const mediaLibrary = {
 
   stories: [
     {
-      title: 'The Saffron Morning',
-      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800',
+      title: 'The Sacred Mark',
+      image: _DS_1,
     },
     {
-      title: 'Letters Under Lanterns',
-      image: 'https://images.pexels.com/photos/1779418/pexels-photo-1779418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800',
+      title: 'Before Forever',
+      image: _DS_2,
     },
   ],
 
   monochrome: [
+    _BW_4,
     _BW_1,
-    _BW_2,
-    _BW_3,
+    _BW_5,
   ],
 
-  destinations: ['Lake Como', 'Jaipur', 'Udaipur', 'Tuscany', 'Santorini', 'Mussoorie'],
+  closing: {
+    video: _CLOSE,
+    image: _THUMB,
+  },
+
+  destinations: ['Banglore', 'Goa', 'Tamil Nadu'],
 
   booking: {
 image: _LAST_BIG,
+image1:_DS_4,
   },
 }
+
+

@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { EditorialImage } from './components/media/EditorialImage'
+import { EditorialVideo } from './components/media/EditorialVideo'
 import { mediaLibrary } from './data/media'
 import {
   heroImageZoom,
@@ -325,7 +326,7 @@ export default function App() {
                   <EditorialImage image={mediaLibrary.mosaic[5].image} alt="Mosaic six" className="h-52 md:col-span-5 md:h-[20rem]" />
                   {/* Previously used undefined mediaLibrary.hero.layered — now uses hero.layered (defined in media.js) */}
                   <EditorialImage image={mediaLibrary.hero.layered} alt="Mosaic seven" className="col-span-2 h-56 md:col-span-6 md:h-[18rem]" />
-                  <EditorialImage image={mediaLibrary.philosophy.image} alt="Mosaic eight" className="col-span-2 h-56 md:col-span-6 md:h-[18rem]" />
+                  <EditorialImage image={mediaLibrary.philosophy.image1} alt="Mosaic eight" className="col-span-2 h-56 md:col-span-6 md:h-[18rem]" />
                 </div>
               </div>
             </section>
@@ -467,8 +468,8 @@ export default function App() {
                       <h3 className="mt-2 text-2xl">{story.title}</h3>
                       <p className="section-copy">
                         {index === 0
-                          ? 'An intimate celebration beneath the Tuscan sun.'
-                          : 'A candlelit evening of vows and quiet joy.'}
+                          ? 'Where two souls embrace a lifetime of forever.'
+                          : 'Where every promise awaits its moment.'}
                       </p>
                     </div>
                   </motion.div>
@@ -494,10 +495,10 @@ export default function App() {
                   </div>
                 </motion.div>
                 <div className="grid gap-4 md:grid-cols-12 md:grid-rows-2 md:gap-6">
-                  <EditorialImage image={mediaLibrary.hero.layered} alt="Portrait spread one" className="h-[36vh] md:col-span-4 md:h-[22rem]" />
-                  <EditorialImage image={mediaLibrary.philosophy.image} alt="Portrait spread two" className="h-[36vh] md:col-span-8 md:h-[22rem]" />
+                  <EditorialImage image={mediaLibrary.philosophy.image} alt="Portrait spread two" className="h-[36vh] md:col-span-5 md:h-[22rem]" />
                   <EditorialImage image={mediaLibrary.hero.image} alt="Portrait spread three" className="h-[36vh] md:col-span-7 md:h-[24rem]" />
-                  <EditorialImage image={mediaLibrary.booking.image} alt="Portrait spread four" className="h-[36vh] md:col-span-5 md:h-[24rem]" />
+                  <EditorialImage image={mediaLibrary.booking.image} alt="Portrait spread four" className="h-[36vh] md:col-span-8 md:h-[24rem]" />
+                  <EditorialImage image={mediaLibrary.booking.image1} alt="Portrait spread four" className="h-[20vh] md:col-span-10 md:h-[24rem]" />
                 </div>
               </div>
             </section>
@@ -557,9 +558,9 @@ export default function App() {
             {/* ── Large Closing Editorial Image ── */}
             <section className="relative px-5 py-28 md:px-12 md:py-36">
               <div className="mx-auto max-w-7xl">
-                <EditorialImage
-                  image={mediaLibrary.booking.image}
-                  alt="Luxury wedding editorial closing image"
+                <EditorialVideo
+                  video={mediaLibrary.closing.video}
+                  thumbnail={mediaLibrary.closing.thumbnail}
                   className="h-[80vh] w-full md:h-[90vh]"
                 />
                 <motion.div
