@@ -98,6 +98,8 @@ export const mediaLibrary = {
   philosophy: {
     image: _port_,
     image1: _port_6,
+    image2: _DS_3,
+    image3: _BW_5,
   },
 
   mosaic: [

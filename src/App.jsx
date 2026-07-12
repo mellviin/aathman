@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { EditorialImage } from './components/media/EditorialImage'
 import { EditorialVideo } from './components/media/EditorialVideo'
 import { mediaLibrary } from './data/media'
+import heroSplash from './assets/aathman_logo.png'
 import {
   heroImageZoom,
   heroImageAmbient,
@@ -37,7 +38,7 @@ const bookingPrompts = [
 
 // ⚠️  Replace with your real Formspree endpoint before going live.
 // Create a free form at https://formspree.io and paste the form ID below.
-const FORM_ENDPOINT = 'https://formspree.io/f/your-form-id'
+const FORM_ENDPOINT = 'https://formspree.io/f/xjglopyv'
 
 function preloadAsset(href, as = 'image') {
   if (!href || typeof document === 'undefined') return
@@ -61,41 +62,19 @@ function SplashScreen() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="absolute inset-0">
-        {/* poster prevents layout shift while the video loads */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={mediaLibrary.splash.poster}
-          className="h-full w-full object-cover opacity-[0.24]"
-        >
-          <source src={mediaLibrary.splash.video} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-[#f6f1e8c4]" />
-      </div>
       <motion.div
         className="relative z-10 px-6 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.4 }}
       >
-        {/* Intentionally empty tagline slot — populate when copy is ready */}
+        <img
+          src={heroSplash}
+          alt="aathman studios"
+          className="mx-auto mb-6 h-20 w-auto object-contain md:h-28"
+        />
         <p className="mb-3 text-xs tracking-[0.28em] text-[#8b7864]" aria-hidden="true" />
-        <h1 className="text-5xl md:text-7xl leading-none tracking-wide">
-          <span className="font-['CoreSansD'] font-bold lowercase tracking-[-0.08em] text-[#111111] text-xl md:text-7xl align-middle">
-            aathman
-          </span>
-          <span
-            style={{ fontFamily: 'ITC Garamond Std Condensed Light Italic' }}
-            className="italic tracking-[0em] text-[#111111] text-2xl md:text-7xl align-middle"
-          >
-            studios
-          </span>
-        </h1>
-        <p className="mt-2 text-xs tracking-[0.18em] text-[#2a2622] md:text-sm">Capturing Souls, Not Just Moments</p>
+        <p className="mt-2 text-xs tracking-[0.18em] text-[#2a2622] md:text-sm"></p>
       </motion.div>
     </motion.div>
   )
@@ -108,6 +87,15 @@ function SplashScreen() {
 // page, avoiding duplicate <h1> landmarks with the splash screen title.
 // ---------------------------------------------------------------------------
 function HeroStart() {
+  const [showTopNav, setShowTopNav] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setShowTopNav(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Hero background image with cinematic zoom */}
@@ -132,10 +120,10 @@ function HeroStart() {
 
       {/* ── Top navigation bar ── */}
       <motion.header
-        className="fixed inset-x-0 top-0 z-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.1, delay: 0.2 }}
+        className={`fixed inset-x-0 top-0 z-50 ${showTopNav ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        initial={{ opacity: 0, y: -24 }}
+        animate={{ opacity: showTopNav ? 1 : 0, y: showTopNav ? 0 : -24 }}
+        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         {/* Soft blur background */}
         <div
@@ -154,20 +142,19 @@ function HeroStart() {
         <div className="relative flex items-center justify-between px-10 py-6 lg:px-16">
           {/* Brand mark */}
           <div className="flex items-center space-x-8">
-            <h1 className="text-2xl font-bold tracking-wide">
-              <span className="font-['CoreSansD'] lowercase tracking-[-0.08em] text-[#111111]">
-                aathman
-              </span>
-              <span className="font-['ITC_Garamond_Std_Condensed_Light_Italic'] italic tracking-[0em] text-[#111111]">
-                studios
-              </span>
-            </h1>
+            <a href="#top" className="inline-flex items-center">
+              <img
+                src={heroSplash}
+                alt="aathman studios"
+                className="h-10 w-auto object-contain"
+              />
+            </a>
           </div>
 
           {/* Desktop navigation */}
           <nav
             aria-label="Primary"
-            className="hidden md:flex items-center space-x-8"
+            className="hidden md:flex items-center space-x-8 nav-gradient-blur"
           >
             {[
               { href: '#stories', label: 'Stories' },
@@ -180,6 +167,7 @@ function HeroStart() {
                 key={item.href}
                 href={item.href}
                 className="text-[#111111] hover:text-[#8b7864] tracking-[0.08em] text-sm transition-colors duration-300"
+                style={{ textShadow: '0 0 12px rgba(255,255,255,0.85)' }}
                 whileHover={{ y: -2 }}
               >
                 {item.label}
@@ -196,14 +184,14 @@ function HeroStart() {
         animate={{ opacity: 1, filter: 'blur(0px)' }}
         transition={{ duration: 1.2, delay: 0.35 }}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-end justify-between">
+        <div className="flex w-full items-end justify-between">
           <div>
             {/* Location / tagline slot — populate once copy is finalised */}
             <p className="text-[10px] tracking-[0.24em] text-[#f0e9dc]" aria-hidden="true" />
             <p className="mt-2 text-4xl leading-none text-[#f9f2e6] md:text-6xl" aria-hidden="true" />
           </div>
           <p className="hidden text-[10px] tracking-[0.16em] text-[#efe6d8] md:block">
-            Timeless frames. Intimate cinema.
+            
           </p>
         </div>
       </motion.div>
@@ -296,7 +284,7 @@ export default function App() {
 
             {/* ── Mosaic Grid ── */}
             <section id="mosaic" className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl">
+              <div className="w-full">
                 <p className="section-label mb-10">CURATED WEDDING MOSAIC</p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -333,7 +321,7 @@ export default function App() {
 
             {/* ── Black & White Sequence ── */}
             <section className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl">
+              <div className="w-full">
                 <p className="section-label mb-10">BLACK &amp; WHITE EMOTIONAL SEQUENCE</p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -357,7 +345,7 @@ export default function App() {
 
             {/* ── Signature Films ── */}
             <section id="films" className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl">
+              <div className="w-full">
                 <p className="section-label mb-10">SIGNATURE WEDDING FILMS</p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -407,7 +395,7 @@ export default function App() {
 
             {/* ── Editorial Film Spread ── */}
             <section className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl">
+              <div className="w-full">
                 <motion.p
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -440,7 +428,7 @@ export default function App() {
 
             {/* ── Destination Stories ── */}
             <section id="stories" className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl space-y-14">
+              <div className="w-full space-y-14">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -456,14 +444,20 @@ export default function App() {
                 {mediaLibrary.stories.map((story, index) => (
                   <motion.div
                     key={story.title}
-                    className={`grid gap-5 md:grid-cols-12 ${index % 2 ? 'md:[&>*:first-child]:order-last' : ''}`}
+                    className={`space-y-6 ${index % 2 ? '' : ''}`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.25 }}
                     transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                   >
-                    <EditorialImage image={story.image} alt={story.title} className="h-[70vh] md:col-span-9" />
-                    <div className="self-end md:col-span-4">
+                    <div className="relative left-1/2 w-screen -translate-x-1/2">
+                      <EditorialImage
+                        image={story.image}
+                        alt={story.title}
+                        className="h-[70vh] w-full max-w-none"
+                      />
+                    </div>
+                    <div className="px-5 md:px-12">
                       <p className="section-label">JOURNAL</p>
                       <h3 className="mt-2 text-2xl">{story.title}</h3>
                       <p className="section-copy">
@@ -478,8 +472,8 @@ export default function App() {
             </section>
 
             {/* ── Portrait Spreads ── */}
-            <section className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl">
+            <section className="relative px-0 py-28 md:px-0 md:py-36 overflow-hidden">
+              <div className="w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -498,7 +492,9 @@ export default function App() {
                   <EditorialImage image={mediaLibrary.philosophy.image} alt="Portrait spread two" className="h-[36vh] md:col-span-5 md:h-[22rem]" />
                   <EditorialImage image={mediaLibrary.hero.image} alt="Portrait spread three" className="h-[36vh] md:col-span-7 md:h-[24rem]" />
                   <EditorialImage image={mediaLibrary.booking.image} alt="Portrait spread four" className="h-[36vh] md:col-span-8 md:h-[24rem]" />
-                  <EditorialImage image={mediaLibrary.booking.image1} alt="Portrait spread four" className="h-[20vh] md:col-span-10 md:h-[24rem]" />
+                  <div className="relative md:col-span-10 md:left-1/2 md:w-screen md:-translate-x-1/2 md:px-5">
+                    <EditorialImage image={mediaLibrary.booking.image1} alt="Portrait spread four" className="h-[36vh] w-full max-w-none md:h-[44rem]" />
+                  </div>
                 </div>
               </div>
             </section>
@@ -506,7 +502,7 @@ export default function App() {
             {/* ── Journal Grid ── */}
             {/* id="journal" added so the Journal nav link resolves correctly */}
             <section id="journal" className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl">
+              <div className="w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -557,7 +553,7 @@ export default function App() {
 
             {/* ── Large Closing Editorial Image ── */}
             <section className="relative px-5 py-28 md:px-12 md:py-36">
-              <div className="mx-auto max-w-7xl">
+              <div className="w-full">
                 <EditorialVideo
                   video={mediaLibrary.closing.video}
                   thumbnail={mediaLibrary.closing.thumbnail}
@@ -580,29 +576,29 @@ export default function App() {
 
             {/* ── Footer ── */}
             <footer className="relative footer-panel border-t border-[#b7a07f40] px-5 py-16 md:px-12 md:py-20">
-              <div className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:justify-between">
+              <div className="flex w-full flex-col gap-10 md:flex-row md:justify-between">
                 <div>
                   <p className="text-xs tracking-[0.24em] text-[#1b1b1b]">aathman studios</p>
-                  <p className="mt-2 text-[10px] tracking-[0.18em] text-[#8b7864]">Capturing Souls, Not Just Moments</p>
+                  <p className="mt-2 text-[10px] tracking-[0.18em] text-[#8b7864]"></p>
                 </div>
                 <div className="grid gap-2 text-sm text-[#2a2622]">
                   <motion.a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/aathman_studios?igsh=dXM4a3Z6aTB3c2t6"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:text-[#8b7864] transition-colors"
                     whileHover={{ color: '#8b7864' }}
                     transition={{ duration: 0.3 }}
                   >
-                    Instagram
+                    aathmanstudios.in
                   </motion.a>
                   <motion.a
-                    href="mailto:hello@aathmanstudios.com"
+                    href="mailto:aathmanstudios@gmail.com"
                     className="hover:text-[#8b7864] transition-colors"
                     whileHover={{ color: '#8b7864' }}
                     transition={{ duration: 0.3 }}
                   >
-                    hello@aathmanstudios.com
+                    aathmanstudios@gmail.com
                   </motion.a>
                   <p className="text-xs">India | Europe | Worldwide</p>
                   <p className="text-xs">+91 98765 43210</p>
@@ -647,10 +643,10 @@ export default function App() {
             {/* ── Booking / Contact ── */}
             <section id="begin" className="relative overflow-hidden px-5 py-20 md:px-12 md:py-28">
               <div className="absolute inset-0">
-                <EditorialImage image={mediaLibrary.philosophy.image} alt="Contact backdrop" className="h-full w-full" overlay={false} />
+                <EditorialImage image={mediaLibrary.philosophy.image3} alt="Contact backdrop" className="h-full w-full" overlay={false} />
               </div>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#f6f1e8]/20 to-[#f6f1e8]/45" />
-              <div className="relative mx-auto max-w-4xl">
+              <div className="relative w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -660,7 +656,7 @@ export default function App() {
                 >
                   <p className="section-label">LET US FRAME YOUR STORY</p>
                   <h2 className="mt-3 text-3xl md:text-4xl text-[#111111]">Where does your forever begin?</h2>
-                  <p className="mt-3 max-w-xl mx-auto text-sm leading-relaxed text-[#2a2622]">
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#2a2622]">
                     Share the essence of your day. We'll craft a narrative that captures your soul.
                   </p>
                 </motion.div>
@@ -675,7 +671,7 @@ export default function App() {
                       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                       className="text-center py-20"
                     >
-                      <div className="max-w-2xl mx-auto">
+                      <div className="max-w-2xl">
                         <h2 className="text-4xl md:text-5xl text-[#111111] mb-6">Your story has been received.</h2>
                         <p className="text-lg text-[#2a2622] leading-relaxed mb-8">
                           And we cannot wait to frame it forever.
@@ -707,11 +703,11 @@ export default function App() {
                           >
                             <div className="text-center mb-8">
                               <h3 className="text-2xl md:text-3xl text-[#111111] mb-2">{currentPrompt.label}</h3>
-                              <div className="w-16 h-px bg-[#8b7864] mx-auto" />
+                              <div className="w-16 h-px bg-[#8b7864]" />
                             </div>
 
                             <form onSubmit={submitInquiry} className="space-y-8">
-                              <div className="max-w-md mx-auto">
+                              <div className="max-w-md">
                                 {currentPrompt.type === 'textarea' ? (
                                   <textarea
                                     required
