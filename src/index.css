@@ -206,3 +206,133 @@ textarea {
     letter-spacing: -0.02em;
   }
 }
+
+
+/* ================================
+   Cinematic Hero Grain
+================================ */
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+
+  opacity: 0.08;
+
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px),
+    radial-gradient(circle, rgba(0,0,0,.04) 1px, transparent 1px);
+
+  background-size: 4px 4px, 6px 6px;
+
+  animation: grainMove 7s steps(8) infinite;
+}
+
+@keyframes grainMove {
+  0% { transform: translate(0,0); }
+  10% { transform: translate(-3%,-2%); }
+  20% { transform: translate(4%,2%); }
+  30% { transform: translate(-2%,3%); }
+  40% { transform: translate(3%,-3%); }
+  50% { transform: translate(-4%,2%); }
+  60% { transform: translate(4%,-1%); }
+  70% { transform: translate(-2%,-4%); }
+  80% { transform: translate(3%,3%); }
+  90% { transform: translate(-3%,1%); }
+  100% { transform: translate(0,0); }
+}
+
+.hero-noise {
+  position: absolute;
+  inset: -100%;
+  pointer-events: none;
+  z-index: 16;
+
+  opacity: .03;
+
+  background-image:
+      url("https://grainy-gradients.vercel.app/noise.svg");
+
+  animation: noiseMove .25s steps(2) infinite;
+}
+
+@keyframes noiseMove {
+
+  0%{
+      transform:translate(0,0);
+  }
+
+  20%{
+      transform:translate(-5%,3%);
+  }
+
+  40%{
+      transform:translate(4%,-3%);
+  }
+
+  60%{
+      transform:translate(-2%,5%);
+  }
+
+  80%{
+      transform:translate(5%,2%);
+  }
+
+  100%{
+      transform:translate(0,0);
+  }
+
+}
+
+.hero-flicker{
+
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+
+    z-index:17;
+
+    background:white;
+
+    mix-blend-mode:soft-light;
+
+    opacity:.015;
+
+    animation:flicker 6s infinite;
+
+}
+
+@keyframes flicker{
+
+0%,100%{
+
+opacity:.015;
+
+}
+
+46%{
+
+opacity:.03;
+
+}
+
+48%{
+
+opacity:.01;
+
+}
+
+50%{
+
+opacity:.025;
+
+}
+
+52%{
+
+opacity:.015;
+
+}
+
+}
