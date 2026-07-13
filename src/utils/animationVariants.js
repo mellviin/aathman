@@ -166,10 +166,10 @@ export const heroImageAmbient = {
 
 export const viewportSettings = {
   once: true,
-  amount: 0.25, // Trigger when 25% of element is visible
+  amount: 0.4, // Trigger when 40% of element is visible (less sensitive)
 }
 
 export const viewportSettingsSensitive = {
   once: true,
-  amount: 0.4, // More conservative for large elements
+  amount: 0.5, // More conservative for large elements (less sensitive)
 }

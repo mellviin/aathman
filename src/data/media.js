@@ -21,10 +21,13 @@ import portraitM4       from '../assets/images/portraits/DSC08294.jpg'
 import portraitM5       from '../assets/images/portraits/DSC09441.jpg'
 import portraitM6       from '../assets/images/portraits/DSC08023.jpg'
 import portraitM7       from '../assets/images/portraits/DSC09221.jpg'
-
+//mosaic images
+import mos2       from '../assets/images/portraits/DSC08353.jpg'
+import mos4       from '../assets/images/portraits/DSC08195.jpg'
+import mos5       from '../assets/images/portraits/DSC06419.jpg'
+import mosaic_gif        from '../assets/images/portraits/04.mp4'
 // import bwA1             from '../assets/images/bw/a1.jpg'
 // import bwPdsPost        from '../assets/images/bw/PDS POST.jpg'
-import giflogo              from '../assets/videos/Logo Animation 4K.mp4'
 import logo           from '../assets/images/aathman_logo.png' // Placeholder until a real GIF is created from the video
 import last_big       from '../assets/images/portraits/DSC09490.webp'
 //BLACK AND WHITE SECTION IMAGES
@@ -50,12 +53,15 @@ import thumbnail      from '../assets/images/portraits/thumbnail.png'
 
 // Temporary Pexels placeholders used until local assets are imported above.
 const _HERO_IMAGE    = heroImage
+const _MOS_2         = mos2
+const _MOS_4         = mos4
+const _MOS_5         = mos5
 const _PORTRAIT_M1   = portraitM1
 const _PORTRAIT_M2   = portraitM2
 const _port_         = portrait_port
 const _port_1        = portrait_port1
 const _BW_PDS_POST   = 'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800'
-const _LOGO_GIF      = giflogo
+const _LOGO_GIF      = mosaic_gif
 const _LOGO          = logo
 const _LAST_BIG       = last_big
 const _BW_1        = bw1
@@ -74,10 +80,11 @@ const _port_5      = portraitM6
 const _port_6      = portraitM7
 const _CLOSE       = close
 const _THUMB       = thumbnail
+const _MOSAIC_GIF  = mosaic_gif
 
 
 // Splash video — replace with your own hosted asset when available.
-const _SPLASH_VIDEO  = 'https://player.vimeo.com/external/434045526.sd.mp4?s=88e69b3d9a3f0e91618f5f54e4fcb4f252682f49&profile_id=164&oauth2_token_id=57447761'
+const _SPLASH_VIDEO  = ''
 
 export const mediaLibrary = {
   splash: {
@@ -104,19 +111,19 @@ export const mediaLibrary = {
 
   mosaic: [
     { id: 'm1', image: _port_3 },
-    { id: 'm2', image: _port_2 },
+    { id: 'm2', image: _MOS_2 },
     { id: 'm3', image: _port_4 },
-    { id: 'm4', image: _port_ },
-    { id: 'm5', image: _port_5 },
+    { id: 'm4', image: _MOS_4 },
+    { id: 'm5', image: _MOS_5 },
     { id: 'm6', image:  _port_1},
   ],
 
   films: [
     {
       id: 'film-monsoon-vows',
-      title: 'Monsoon Vows',
-      couple: 'Aarav & Meher',
-      location: 'Udaipur',
+      title: 'intimate',
+      couple: 'AxR',
+      location: 'Bengaluru',
       year: '2025',
       runtime: '04:12',
       phrase: 'An evening wrapped in silence and light.',
@@ -150,14 +157,14 @@ export const mediaLibrary = {
   editorialVideoCards: [
     {
       id: 'hero-film',
-      title: 'The First Light',
-      couple: 'Aanya & Dev',
-      location: 'Lake Como',
+      title: 'Haldi',
+      couple: 'AxR',
+      location: 'Bengaluru',
       year: '2025',
       runtime: '02:58',
-      phrase: 'A dawn promise held between breath and water.',
+      phrase: 'Feel the Maanja in the air.',
       image: logo,
-      video: giflogo,
+      video: mosaic_gif,
     },
     {
       id: 'paired-one',
@@ -208,8 +215,13 @@ export const mediaLibrary = {
   destinations: ['Banglore', 'Goa', 'Tamil Nadu'],
 
   booking: {
-image: _LAST_BIG,
-image1:_DS_4,
+    image: _LAST_BIG,
+    image1:_DS_4,
+  },
+
+  LOGO: {
+    gif: _LOGO_GIF,
+    image: _LOGO,
   },
 }
 

@@ -706,17 +706,25 @@ export default function App() {
                               <div className="w-16 h-px bg-[#8b7864]" />
                             </div>
 
-                            <form onSubmit={submitInquiry} className="space-y-8">
-                              <div className="max-w-md">
-                                {currentPrompt.type === 'textarea' ? (
+                            <form onSubmit={submitInquiry} className="space-y-8 relative">
+                              {/* Step counter — pinned right */}
+                              <p className="absolute right-0 top-1 text-xs tracking-[0.18em] text-[#8b7864]">
+                                {step + 1} of {bookingPrompts.length}
+                              </p>
+
+                              <div className="max-w-2xl mx-auto">
+                                {currentPrompt.type === "textarea" ? (
                                   <textarea
                                     required
                                     rows={6}
                                     value={formData[currentPrompt.key]}
                                     onChange={(e) =>
-                                      setFormData((prev) => ({ ...prev, [currentPrompt.key]: e.target.value }))
+                                      setFormData((prev) => ({
+                                        ...prev,
+                                        [currentPrompt.key]: e.target.value,
+                                      }))
                                     }
-                                    className="contact-input resize-none text-lg leading-relaxed"
+                                    className="contact-input resize-none text-lg leading-relaxed w-full rounded-md border border-black shadow-none outline-none focus:border-black focus:outline-none focus:ring-0 focus:shadow-none transition-none"
                                     placeholder={currentPrompt.placeholder}
                                   />
                                 ) : currentPrompt.type === 'select' ? (
@@ -724,9 +732,12 @@ export default function App() {
                                     required
                                     value={formData[currentPrompt.key]}
                                     onChange={(e) =>
-                                      setFormData((prev) => ({ ...prev, [currentPrompt.key]: e.target.value }))
+                                      setFormData((prev) => ({
+                                        ...prev,
+                                        [currentPrompt.key]: e.target.value,
+                                      }))
                                     }
-                                    className="contact-input text-lg"
+                                    className="contact-input text-lg w-full rounded-md border border-black shadow-none outline-none focus:border-black focus:outline-none focus:ring-0 focus:shadow-none transition-none"
                                   >
                                     <option value="" disabled>
                                       {currentPrompt.placeholder}
@@ -743,18 +754,18 @@ export default function App() {
                                     type={currentPrompt.type}
                                     value={formData[currentPrompt.key]}
                                     onChange={(e) =>
-                                      setFormData((prev) => ({ ...prev, [currentPrompt.key]: e.target.value }))
+                                      setFormData((prev) => ({
+                                        ...prev,
+                                        [currentPrompt.key]: e.target.value,
+                                      }))
                                     }
-                                    className="contact-input text-lg"
+                                    className="contact-input text-lg w-full rounded-md border border-black shadow-none outline-none focus:border-black focus:outline-none focus:ring-0 focus:shadow-none transition-none"
                                     placeholder={currentPrompt.placeholder}
                                   />
                                 )}
                               </div>
 
-                              <div className="flex items-center justify-between pt-8">
-                                <p className="text-xs tracking-[0.18em] text-[#8b7864]">
-                                  {step + 1} of {bookingPrompts.length}
-                                </p>
+                              <div className="flex items-center justify-center pt-8">
                                 <motion.button
                                   type="submit"
                                   disabled={status === 'loading'}
