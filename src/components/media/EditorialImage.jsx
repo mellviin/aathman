@@ -21,7 +21,6 @@ export const EditorialImage = memo(function EditorialImage({
     <OptimizedImage
       src={image}
       alt={alt}
-      className={className}
       priority={priority}
       monochrome={monochrome}
       overlay={overlay}
@@ -44,5 +43,5 @@ export const EditorialImage = memo(function EditorialImage({
     )
   }
 
-  return imageElement
+  return <div className={className}>{imageElement}</div>
 })

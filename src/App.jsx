@@ -212,13 +212,9 @@ export default function App() {
   const isFinalStep = step === bookingPrompts.length - 1
   const currentPrompt = bookingPrompts[step]
 
-  // Stable combined list of images for the journal grid
+  // Explicit journal image order — edit mediaLibrary.journal to choose which photos appear and where.
   const journalFrames = useMemo(
-    () => [
-      ...mediaLibrary.mosaic.map((item) => item.image),
-      ...mediaLibrary.films.map((item) => item.image),
-      ...mediaLibrary.stories.map((item) => item.image),
-    ],
+    () => mediaLibrary.journal,
     [], // intentionally empty — mediaLibrary is a static module-level constant
   )
 
@@ -283,7 +279,7 @@ export default function App() {
             <HeroStart />
 
             {/* ── Mosaic Grid ── */}
-            <section id="mosaic" className="relative px-5 py-28 md:px-12 md:py-36">
+            <section id="mosaic" className="relative px-5 py-20 md:px-12 md:py-28">
               <div className="w-full">
                 <p className="section-label mb-10">CURATED WEDDING MOSAIC</p>
                 <motion.div
@@ -298,66 +294,70 @@ export default function App() {
                     Curated glimpses of vows, stillness, and celebration woven into one visual rhythm.
                   </p>
                 </motion.div>
-                <div className="grid grid-cols-2 gap-3 md:grid-cols-12 md:grid-rows-3 md:gap-6">
-                  <EditorialImage image={mediaLibrary.mosaic[0].image} alt="Mosaic one" className="h-52 md:col-span-4 md:row-span-2 md:h-[40rem]" priority />
-                  <EditorialImage image={mediaLibrary.mosaic[1].image} alt="Mosaic two" className="h-52 md:col-span-5 md:h-[19rem]" priority />
-                  <Suspense fallback={<div className="h-52 md:col-span-3 md:h-[19rem] bg-[#f4ebe0]" />}>
+                <div className="grid grid-cols-2 gap-1 md:grid-cols-12 md:grid-rows-1 md:gap-1">
+                  <EditorialImage image={mediaLibrary.mosaic[0].image} alt="Mosaic one" className="h-52 md:col-span-4 md:row-span-2 md:h-[69.3rem]" priority />
+                  <EditorialImage image={mediaLibrary.mosaic[1].image} alt="Mosaic two" className="h-52 md:col-span-5 md:h-[39rem]" priority />
+                  <Suspense fallback={<div className="h-52 md:col-span-3 md:h-[39rem] bg-[#f4ebe0]" />}>
                     <EditorialVideoCard
                       item={mediaLibrary.editorialVideoCards[0]}
-                      activeVideoId={activeVideoId}
-                      setActiveVideoId={setActiveVideoId}
-                      className="h-52 md:col-span-3 md:h-[19rem]"
+                      className="h-52 md:col-span-3 md:h-[39rem]"
                     />
                   </Suspense>
-                  <EditorialImage image={mediaLibrary.mosaic[3].image} alt="Mosaic four" className="h-52 md:col-span-3 md:h-[20rem]" />
-                  <EditorialImage image={mediaLibrary.mosaic[4].image} alt="Mosaic five" className="h-52 md:col-span-4 md:h-[20rem]" />
-                  <EditorialImage image={mediaLibrary.mosaic[5].image} alt="Mosaic six" className="h-52 md:col-span-5 md:h-[20rem]" />
+                  <EditorialImage image={mediaLibrary.mosaic[3].image} alt="Mosaic four" className="h-62 md:col-span-4 md:h-[30rem]" />
+                  <EditorialImage image={mediaLibrary.mosaic[4].image} alt="Mosaic five" className="h-52 md:col-span-4 md:h-[30rem]" />
+                  <EditorialImage image={mediaLibrary.mosaic[5].image} alt="Mosaic six" className="h-52 md:col-span-2 md:h-[38rem]" />
                   {/* Previously used undefined mediaLibrary.hero.layered — now uses hero.layered (defined in media.js) */}
-                  <EditorialImage image={mediaLibrary.hero.layered} alt="Mosaic seven" className="col-span-2 h-56 md:col-span-6 md:h-[18rem]" />
-                  <EditorialImage image={mediaLibrary.philosophy.image1} alt="Mosaic eight" className="col-span-2 h-56 md:col-span-6 md:h-[18rem]" />
+                  <EditorialImage image={mediaLibrary.hero.layered} alt="Mosaic seven" className="col-span-2 h-56 md:col-span-6 md:h-[38rem]" />
+                  <EditorialImage image={mediaLibrary.philosophy.image1} alt="Mosaic eight" className="col-span-2 h-56 md:col-span-4 md:h-[38rem]" />
                 </div>
               </div>
             </section>
 
             {/* ── Black & White Sequence ── */}
-            <section className="relative px-5 py-28 md:px-12 md:py-36">
+            <section className="relative px-5 pt-0 pb-4 md:px-12 md:pb-6">
               <div className="w-full">
-                <p className="section-label mb-10">BLACK &amp; WHITE EMOTIONAL SEQUENCE</p>
+                <p className="section-label mb-8">BLACK &amp; WHITE EMOTIONAL SEQUENCE</p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="mb-10 grid gap-3 md:grid-cols-12"
+                  className="mb-6 grid gap-3 md:grid-cols-12"
                 >
                   <h2 className="text-3xl md:col-span-5 md:text-4xl">Where Emotion Becomes Cinema</h2>
                   <p className="max-w-md section-copy md:col-span-7 md:justify-self-end">
                     A monochrome passage of glances, textures, and silence.
                   </p>
                 </motion.div>
-                <div className="grid gap-4 md:grid-cols-12 md:grid-rows-2 md:gap-6">
-                  <EditorialImage image={mediaLibrary.monochrome[0]} alt="Monochrome sequence one" className="h-[62vh] md:col-span-5 md:row-span-2 md:h-[50rem]" monochrome />
-                  <EditorialImage image={mediaLibrary.monochrome[1]} alt="Monochrome sequence two" className="h-[30vh] md:col-span-7 md:h-[24.5rem]" monochrome />
-                  <EditorialImage image={mediaLibrary.monochrome[2]} alt="Monochrome sequence three" className="h-[30vh] md:col-span-7 md:h-[24.5rem]" monochrome />
+                <div className="grid gap-1 md:grid-cols-12 md:grid-rows-2 md:gap-1">
+                  <EditorialImage image={mediaLibrary.monochrome[0]} alt="Monochrome sequence one" className="h-[56vh] md:col-span-5 md:row-span-2 md:h-[65.8rem]" monochrome />
+                  <Suspense fallback={<div className="h-[14vh] md:col-span-10 md:h-[35rem]" monochrome />}>
+                    <EditorialVideoCard
+                      item={mediaLibrary.editorialVideoCards[3]}
+                      className="h-[30vh] md:col-span-7 md:h-[40.75rem]"
+                    />
+                  </Suspense>
+                  <EditorialImage image={mediaLibrary.monochrome[2]} alt="Monochrome sequence three" className="h-[30vh] md:col-span-7 md:h-[24.75rem]" monochrome />
+                  
                 </div>
               </div>
             </section>
 
             {/* ── Signature Films ── */}
-            <section id="films" className="relative px-5 py-28 md:px-12 md:py-36">
+            <section id="films" className="relative px-5 pt-0 pb-0 md:px-12 md:pt-0">
               <div className="w-full">
-                <p className="section-label mb-10">SIGNATURE WEDDING FILMS</p>
+                <p className="section-label mb-8">SIGNATURE WEDDING FILMS</p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="mb-10 max-w-2xl"
+                  className="mb-0 max-w-2xl"
                 >
                   <h2 className="section-title text-4xl md:text-5xl">Crafted With Soul</h2>
                   <p className="section-copy">Presented like cinema posters, each film is cut as an heirloom.</p>
                 </motion.div>
-                <div className="grid gap-8 md:grid-cols-3">
+                <div className="grid gap-1 md:grid-cols-2">
                   {mediaLibrary.films.map((film) => (
                     // Use stable film.id (not film.title) as the React key
                     <motion.article
@@ -369,11 +369,9 @@ export default function App() {
                       whileHover={{ opacity: 0.94 }}
                       className="space-y-4"
                     >
-                      <Suspense fallback={<div className="h-[70vh] bg-[#f4ebe0]" />}>
+                      <Suspense fallback={<div className="h-[10vh] bg-[#f4ebe0]" />}>
                         <EditorialVideoCard
                           item={film}
-                          activeVideoId={activeVideoId}
-                          setActiveVideoId={setActiveVideoId}
                           className="h-[70vh]"
                         />
                       </Suspense>
@@ -394,7 +392,7 @@ export default function App() {
             </section>
 
             {/* ── Editorial Film Spread ── */}
-            <section className="relative px-5 py-28 md:px-12 md:py-36">
+            <section className="relative px-5 py-20 md:px-12 md:py-28">
               <div className="w-full">
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -405,20 +403,16 @@ export default function App() {
                 >
                   EDITORIAL FILM SPREAD
                 </motion.p>
-                <div className="grid gap-5 md:grid-cols-12 md:gap-6">
+                <div className="grid gap-5 md:grid-cols-12 md:gap-1">
                   <Suspense fallback={<div className="h-[55vh] md:col-span-5 md:h-[46rem] bg-[#f4ebe0]" />}>
                     <EditorialVideoCard
                       item={mediaLibrary.editorialVideoCards[1]}
-                      activeVideoId={activeVideoId}
-                      setActiveVideoId={setActiveVideoId}
                       className="h-[55vh] md:col-span-5 md:h-[46rem]"
                     />
                   </Suspense>
                   <Suspense fallback={<div className="h-[55vh] md:col-span-7 md:h-[46rem] bg-[#f4ebe0]" />}>
                     <EditorialVideoCard
                       item={mediaLibrary.editorialVideoCards[2]}
-                      activeVideoId={activeVideoId}
-                      setActiveVideoId={setActiveVideoId}
                       className="h-[55vh] md:col-span-7 md:h-[46rem]"
                     />
                   </Suspense>
@@ -427,7 +421,7 @@ export default function App() {
             </section>
 
             {/* ── Destination Stories ── */}
-            <section id="stories" className="relative px-5 py-28 md:px-12 md:py-36">
+            <section id="stories" className="relative px-5 py-20 md:px-12 md:py-28">
               <div className="w-full space-y-14">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -451,20 +445,24 @@ export default function App() {
                     transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                   >
                     <div className="relative left-1/2 w-screen -translate-x-1/2">
-                      <EditorialImage
-                        image={story.image}
-                        alt={story.title}
-                        className="h-[70vh] w-full max-w-none"
-                      />
-                    </div>
-                    <div className="px-5 md:px-12">
-                      <p className="section-label">JOURNAL</p>
-                      <h3 className="mt-2 text-2xl">{story.title}</h3>
-                      <p className="section-copy">
-                        {index === 0
-                          ? 'Where two souls embrace a lifetime of forever.'
-                          : 'Where every promise awaits its moment.'}
-                      </p>
+                      {story.video ? (
+                        <video
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          className="h-[90vh] w-full object-cover"
+                        >
+                          <source src={story.video} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <EditorialImage
+                          image={story.image}
+                          alt={story.title}
+                          className="h-[90vh] w-full max-w-none"
+                        />
+                      )}
                     </div>
                   </motion.div>
                 ))}
@@ -472,7 +470,7 @@ export default function App() {
             </section>
 
             {/* ── Portrait Spreads ── */}
-            <section className="relative px-0 py-28 md:px-0 md:py-36 overflow-hidden">
+            <section className="relative px-0 py-20 md:px-12 md:py-28 overflow-hidden">
               <div className="w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -488,20 +486,18 @@ export default function App() {
                     </p>
                   </div>
                 </motion.div>
-                <div className="grid gap-4 md:grid-cols-12 md:grid-rows-2 md:gap-6">
-                  <EditorialImage image={mediaLibrary.philosophy.image} alt="Portrait spread two" className="h-[36vh] md:col-span-5 md:h-[22rem]" />
-                  <EditorialImage image={mediaLibrary.hero.image} alt="Portrait spread three" className="h-[36vh] md:col-span-7 md:h-[24rem]" />
-                  <EditorialImage image={mediaLibrary.booking.image} alt="Portrait spread four" className="h-[36vh] md:col-span-8 md:h-[24rem]" />
-                  <div className="relative md:col-span-10 md:left-1/2 md:w-screen md:-translate-x-1/2 md:px-5">
-                    <EditorialImage image={mediaLibrary.booking.image1} alt="Portrait spread four" className="h-[36vh] w-full max-w-none md:h-[44rem]" />
-                  </div>
+                <div className="grid gap-1 md:grid-cols-12 md:grid-rows-2 md:gap-1">
+                  <EditorialImage image={mediaLibrary.philosophy.image} alt="Portrait spread two" className="h-[36vh] md:col-span-5 md:h-[32rem]" />
+                  <EditorialImage image={mediaLibrary.hero.image} alt="Portrait spread three" className="h-[36vh] md:col-span-7 md:h-[32rem]" />
+                  <EditorialImage image={mediaLibrary.booking.image} alt="Portrait spread four" className="h-[56vh] md:col-span-8 md:h-[24rem]" />
+                  <EditorialVideo video={mediaLibrary.booking.image1} />
                 </div>
               </div>
             </section>
 
             {/* ── Journal Grid ── */}
             {/* id="journal" added so the Journal nav link resolves correctly */}
-            <section id="journal" className="relative px-5 py-28 md:px-12 md:py-36">
+            <section id="journal" className="relative px-5 py-20 md:px-12 md:py-8">
               <div className="w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -517,7 +513,7 @@ export default function App() {
                     </p>
                   </div>
                 </motion.div>
-                <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-6">
+                <div className="grid grid-cols-2 gap-1 md:grid-cols-3 md:gap-1">
                   {journalFrames.slice(0, 12).map((image, index) => (
                     <EditorialImage
                       // image URL is stable; index prevents collisions when the same
@@ -542,8 +538,6 @@ export default function App() {
                   <Suspense fallback={<div className="col-span-2 h-56 md:col-span-2 md:h-72 bg-[#f4ebe0]" />}>
                     <EditorialVideoCard
                       item={mediaLibrary.editorialVideoCards[0]}
-                      activeVideoId={activeVideoId}
-                      setActiveVideoId={setActiveVideoId}
                       className="col-span-2 h-56 md:col-span-2 md:h-72"
                     />
                   </Suspense>
@@ -552,7 +546,7 @@ export default function App() {
             </section>
 
             {/* ── Large Closing Editorial Image ── */}
-            <section className="relative px-5 py-28 md:px-12 md:py-36">
+            <section className="relative px-5 py-20 md:px-12 md:py-28">
               <div className="w-full">
                 <EditorialVideo
                   video={mediaLibrary.closing.video}
@@ -578,7 +572,9 @@ export default function App() {
             <footer className="relative footer-panel border-t border-[#b7a07f40] px-5 py-16 md:px-12 md:py-20">
               <div className="flex w-full flex-col gap-10 md:flex-row md:justify-between">
                 <div>
-                  <p className="text-xs tracking-[0.24em] text-[#1b1b1b]">aathman studios</p>
+                  <p className="text-xs tracking-[0.24em] text-[#1b1b1b]" href="https://aathman-kirr.vercel.app/">
+                    aathman studios
+                  </p>
                   <p className="mt-2 text-[10px] tracking-[0.18em] text-[#8b7864]"></p>
                 </div>
                 <div className="grid gap-2 text-sm text-[#2a2622]">
@@ -590,7 +586,7 @@ export default function App() {
                     whileHover={{ color: '#8b7864' }}
                     transition={{ duration: 0.3 }}
                   >
-                    aathmanstudios.in
+                    aathmanstudios@instagram
                   </motion.a>
                   <motion.a
                     href="mailto:aathmanstudios@gmail.com"
@@ -601,7 +597,7 @@ export default function App() {
                     aathmanstudios@gmail.com
                   </motion.a>
                   <p className="text-xs">India | Europe | Worldwide</p>
-                  <p className="text-xs">+91 98765 43210</p>
+                  <p className="text-xs">+91 70229 06802</p>
                 </div>
                 <nav aria-label="Footer">
                   <ul className="flex flex-col gap-2 text-sm text-[#2a2622] list-none p-0 m-0">
@@ -641,7 +637,7 @@ export default function App() {
             </footer>
 
             {/* ── Booking / Contact ── */}
-            <section id="begin" className="relative overflow-hidden px-5 py-20 md:px-12 md:py-28">
+            <section id="begin" className="relative overflow-hidden px-5 py-16 md:px-12 md:py-24">
               <div className="absolute inset-0">
                 <EditorialImage image={mediaLibrary.philosophy.image3} alt="Contact backdrop" className="h-full w-full" overlay={false} />
               </div>

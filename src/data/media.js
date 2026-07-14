@@ -24,7 +24,7 @@ import portraitM7       from '../assets/images/portraits/DSC09221.jpg'
 //mosaic images
 import mos2       from '../assets/images/portraits/DSC08353.jpg'
 import mos4       from '../assets/images/portraits/DSC08195.jpg'
-import mos5       from '../assets/images/portraits/DSC06419.jpg'
+import mos5       from '../assets/images/portraits/DSC07639 copy.jpg'
 import mosaic_gif        from '../assets/images/portraits/04.mp4'
 // import bwA1             from '../assets/images/bw/a1.jpg'
 // import bwPdsPost        from '../assets/images/bw/PDS POST.jpg'
@@ -49,6 +49,14 @@ import dest4          from '../assets/images/portraits/DSC08338.jpg'
 import close          from '../assets/videos/abel.mp4'
 import thumbnail      from '../assets/images/portraits/thumbnail.png'
 
+//VIDEOS
+import video1         from '../assets/videos/01.mp4'
+import video2         from '../assets/videos/02_.mp4'
+import video3         from '../assets/videos/05.mp4'
+import video4         from '../assets/videos/06.mp4'
+import video5         from '../assets/videos/01_.mp4'
+import video6         from '../assets/videos/07.mp4'
+import video7         from '../assets/videos/08.mp4'
 
 
 // Temporary Pexels placeholders used until local assets are imported above.
@@ -81,6 +89,14 @@ const _port_6      = portraitM7
 const _CLOSE       = close
 const _THUMB       = thumbnail
 const _MOSAIC_GIF  = mosaic_gif
+//videos
+const _VIDEO_1     = video1
+const _VIDEO_2     = video2
+const _VIDEO_3     = video3
+const _VIDEO_4     = video4
+const _VIDEO_5     = video5
+const _VIDEO_6     = video6
+const _VIDEO_7     = video7
 
 
 // Splash video — replace with your own hosted asset when available.
@@ -127,30 +143,17 @@ export const mediaLibrary = {
       year: '2025',
       runtime: '04:12',
       phrase: 'An evening wrapped in silence and light.',
-      image: 'https://images.pexels.com/photos/934083/pexels-photo-934083.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1300&w=2000',
-      video: 'https://player.vimeo.com/external/411625999.sd.mp4?s=f131f451ecf43c59ea49f892fd0ccca16b679ec7&profile_id=164&oauth2_token_id=57447761',
-    },
-    {
-      id: 'film-whispers-at-dusk',
-      title: 'Whispers At Dusk',
-      couple: 'Ira & Ved',
-      location: 'Jaipur',
-      year: '2024',
-      runtime: '03:48',
-      phrase: 'Where jasmine winds met handwritten vows.',
-      image: 'https://images.pexels.com/photos/2781104/pexels-photo-2781104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1300&w=2000',
-      video: 'https://player.vimeo.com/external/377508802.sd.mp4?s=63f3ca61f6f485f50f68c774f06f9f2f8efde6cd&profile_id=164&oauth2_token_id=57447761',
+      video: video6,
     },
     {
       id: 'film-forever-in-bloom',
       title: 'Forever In Bloom',
       couple: 'Rhea & Kabir',
-      location: 'Goa',
+      location: 'Bengaluru',
       year: '2023',
       runtime: '05:01',
       phrase: 'Sea air, soft laughter, and a midnight first dance.',
-      image: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1300&w=2000',
-      video: 'https://player.vimeo.com/external/434045526.sd.mp4?s=88e69b3d9a3f0e91618f5f54e4fcb4f252682f49&profile_id=164&oauth2_token_id=57447761',
+      video: video7,
     },
   ],
 
@@ -174,8 +177,7 @@ export const mediaLibrary = {
       year: '2024',
       runtime: '03:31',
       phrase: 'Video 1',
-      image: _LOGO,
-      video: 'https://player.vimeo.com/external/377508802.sd.mp4?s=63f3ca61f6f485f50f68c774f06f9f2f8efde6cd&profile_id=164&oauth2_token_id=57447761',
+      video: _VIDEO_4,
     },
     {
       id: 'paired-two',
@@ -185,8 +187,17 @@ export const mediaLibrary = {
       year: '2023',
       runtime: '04:09',
       phrase: 'Quiet laughter beneath drifting lanterns.',
-      image: 'https://images.pexels.com/photos/3137074/pexels-photo-3137074.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800',
-      video: logo,
+      video: _VIDEO_3,
+    },
+    {
+      id: 'paired-three',
+      title: 'Monochrome Motion',
+      couple: 'Sara & Vihaan',
+      location: 'Tuscany',
+      year: '2023',
+      runtime: '04:09',
+      phrase: 'A quiet black-and-white film to anchor the sequence.',
+      video: _VIDEO_5,
     },
   ],
 
@@ -197,7 +208,7 @@ export const mediaLibrary = {
     },
     {
       title: 'Before Forever',
-      image: _DS_2,
+      video: _VIDEO_5,
     },
   ],
 
@@ -205,6 +216,21 @@ export const mediaLibrary = {
     _BW_4,
     _BW_1,
     _BW_5,
+  ],
+
+  journal: [
+    _MOS_2,
+    _MOS_4,
+    _MOS_5,
+    _DS_1,
+    _DS_2,
+    _BW_4,
+    _BW_1,
+    _BW_5,
+    _port_3,
+    _port_4,
+    _port_5,
+    _port_6,
   ],
 
   closing: {

@@ -77,7 +77,7 @@ export const OptimizedImage = memo(function OptimizedImage({
 
   return (
     <div
-      className={`optimized-image relative overflow-hidden group image-frame ${className} ${loaded ? 'loaded' : 'loading'}`}
+      className={`optimized-image relative overflow-hidden group image-frame w-full h-full ${loaded ? 'loaded' : 'loading'}`}
       // Cream-toned background shows while the image loads — no extra HTTP request
       style={{ backgroundColor: '#f2ece2' }}
     >

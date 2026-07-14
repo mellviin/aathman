@@ -1,71 +1,71 @@
-import { memo } from 'react'
-import { motion } from 'framer-motion'
-import { OptimizedImage } from './OptimizedImage'
-import { imageReveal, hoverImageOpacity, viewportSettings } from '../../utils/animationVariants'
+import { memo, useEffect, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { imageReveal, viewportSettings } from '../../utils/animationVariants'
 
-function EditorialVideoCard({ item, activeVideoId, setActiveVideoId, className = '' }) {
-  const isActive = activeVideoId === item.id
+function EditorialVideoCard({ item, className = '' }) {
+  const videoRef = useRef(null)
+  const containerRef = useRef(null)
+
+  const isInView = useInView(containerRef, {
+    amount: 0.5, // 50% visible
+  })
+
+  useEffect(() => {
+    const video = videoRef.current
+
+    if (!video) return
+
+    if (isInView) {
+      video.play().catch(() => {})
+    } else {
+      video.pause()
+    }
+  }, [isInView])
 
   return (
     <motion.article
+      ref={containerRef}
       initial="initial"
       whileInView="animate"
-      whileHover="whileHover"
       viewport={viewportSettings}
       variants={imageReveal}
       className={`video-card group relative overflow-hidden border border-[#b7a07f20] bg-[#faf4ec]/20 shadow-[0_20px_80px_rgba(15,11,8,0.08)] ${className}`}
     >
-      {isActive ? (
-        // Only load the video element once the user taps play —
-        // preload="none" so the browser fetches nothing until autoPlay kicks in
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          poster={item.image}
-          className="h-full w-full object-cover"
-        >
-          <source src={item.video} type="video/mp4" />
-        </video>
-      ) : (
-        <OptimizedImage
-          src={item.image}
-          alt={`${item.title} editorial film poster`}
-          className="h-full w-full"
-          overlay={false}
-        />
-      )}
-
-      {/* Subtle vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#11111150] pointer-events-none" />
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="h-full w-full object-cover"
+      >
+        <source src={item.video} type="video/mp4" />
+      </video>
 
       {/* Top meta */}
       <div className="absolute left-3 right-3 top-3 flex items-center justify-between text-[10px] tracking-[0.18em] text-[#f3ebde] md:left-5 md:right-5 md:top-5">
-        <p className="font-[CoreSansD] uppercase tracking-[0.32em] text-[#f1e8d8]">{item.location}</p>
-        <p className="font-[CoreSansD] uppercase tracking-[0.32em] text-[#f1e8d8]">{item.runtime}</p>
+        <p>{item.location}</p>
+        <p>{item.runtime}</p>
       </div>
 
       {/* Bottom meta */}
       <div className="absolute bottom-4 left-4 right-4 md:bottom-5 md:left-5 md:right-5">
-        <p className="text-[10px] tracking-[0.26em] text-[#e8dcc8] uppercase">{item.year}</p>
-        <h4 className="mt-1 text-2xl font-[CoreSansD] text-[#f8efe0] md:text-3xl">{item.title}</h4>
-        <p className="mt-1 text-xs text-[#f0e5d5]">{item.couple}</p>
-        <p className="mt-2 max-w-sm text-xs leading-relaxed text-[#eadfce]">{item.phrase}</p>
-      </div>
+        <p className="text-[10px] tracking-[0.26em] text-[#e8dcc8] uppercase">
+          {item.year}
+        </p>
 
-      {/* Play / pause button */}
-      <motion.button
-        onClick={() => setActiveVideoId(isActive ? null : item.id)}
-        whileHover={{ scale: 1.08, opacity: 0.95 }}
-        whileTap={{ scale: 0.96 }}
-        transition={{ duration: 0.3 }}
-        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#efe6d7b0] bg-[#1111113d] text-[#f6ede0] shadow-[0_16px_30px_rgba(0,0,0,0.18)] hover:bg-[#11111160]"
-        aria-label={isActive ? 'Pause film preview' : 'Play film preview'}
-      >
-        {isActive ? '⏸' : '▶'}
-      </motion.button>
+        <h4 className="mt-1 text-2xl text-[#f8efe0] md:text-3xl">
+          {item.title}
+        </h4>
+
+        <p className="mt-1 text-xs text-[#f0e5d5]">
+          {item.couple}
+        </p>
+
+        <p className="mt-2 max-w-sm text-xs leading-relaxed text-[#eadfce]">
+          {item.phrase}
+        </p>
+      </div>
     </motion.article>
   )
 }

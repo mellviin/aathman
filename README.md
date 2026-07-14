@@ -319,7 +319,7 @@ These are visible in the current codebase and should be addressed before a publi
 
 - `FORM_ENDPOINT` in `App.jsx` is still the Formspree placeholder (`your-form-id`).
 - Several `mediaLibrary` entries (`mosaic`, `films`, `editorialVideoCards`, `stories`, `philosophy`) point to **Pexels stock photos** and a **Vimeo demo video** rather than real studio work — swap these for actual shoot assets via `src/data/media.js`.
-- Footer contact details (`hello@aathmanstudios.com`, `+91 98765 43210`, Instagram link) are placeholder values.
+- Footer contact details (`aathmanstudios@gmail.com`, `+91 7022906802`, Instagram link) are placeholder values.
 - Hero caption/tagline slot (empty `aria-hidden` `<p>` tags in `HeroStart`) is intentionally blank pending final copy.
 - The `films` array's inline comment notes that React keys were switched from `film.title` to the stable `film.id` — double-check any future data additions include a unique `id`.
 
