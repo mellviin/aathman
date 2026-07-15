@@ -269,6 +269,13 @@ export default function App() {
           transition={{ duration: 0.8 }}
           className="relative min-h-screen"
         >
+          <img
+            src="../assets/images/portraits/DSC06445.jpg"
+            alt="Background graphic"
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 -z-10 h-full w-full object-cover"
+          />
+
           {/* Decorative mandala corners */}
           <Suspense fallback={null}>
             <MandalaCorners />
@@ -281,7 +288,7 @@ export default function App() {
             {/* ── Mosaic Grid ── */}
             <section id="mosaic" className="relative px-5 py-20 md:px-12 md:py-28">
               <div className="w-full">
-                <p className="section-label mb-10">CURATED WEDDING MOSAIC</p>
+                <p className="text-4xl section-label mb-10 ">AATHMAN WEDDING JOURNAL</p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -289,9 +296,9 @@ export default function App() {
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="mb-10 max-w-2xl"
                 >
-                  <h2 className="text-4xl leading-[0.95] text-[#111111] md:text-5xl">Moments That Outlive Time</h2>
+                  <h2 className="text-4xl leading-[0.95] text-[#111111] md:text-5xl">Moments That Become Forever</h2>
                   <p className="section-copy">
-                    Curated glimpses of vows, stillness, and celebration woven into one visual rhythm.
+                    From whispered prayers to joyous celebrations, every frame carries a piece of the family's heart.
                   </p>
                 </motion.div>
                 <div className="grid grid-cols-2 gap-1 md:grid-cols-12 md:grid-rows-1 md:gap-1">
@@ -346,7 +353,7 @@ export default function App() {
             {/* ── Signature Films ── */}
             <section id="films" className="relative px-5 pt-0 pb-0 md:px-12 md:pt-0">
               <div className="w-full">
-                <p className="section-label mb-8">SIGNATURE WEDDING FILMS</p>
+                <p className="section-label mb-8">Bound By Love, Blessed By Time</p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -354,8 +361,8 @@ export default function App() {
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="mb-0 max-w-2xl"
                 >
-                  <h2 className="section-title text-4xl md:text-5xl">Crafted With Soul</h2>
-                  <p className="section-copy">Presented like cinema posters, each film is cut as an heirloom.</p>
+                  <h2 className="section-title text-4xl md:text-5xl">THE ART OF COMMITMENT</h2>
+                  <p className="section-copy">An intimate portrayal of two souls stepping into a lifetime together.</p>
                 </motion.div>
                 <div className="grid gap-1 md:grid-cols-2">
                   {mediaLibrary.films.map((film) => (
@@ -391,7 +398,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* ── Editorial Film Spread ── */}
+            {/* ── THE STORY EDITION ── */}
             <section className="relative px-5 py-20 md:px-12 md:py-28">
               <div className="w-full">
                 <motion.p
@@ -401,7 +408,7 @@ export default function App() {
                   transition={{ duration: 0.8 }}
                   className="section-label mb-10"
                 >
-                  EDITORIAL FILM SPREAD
+                  THE STORY EDITION
                 </motion.p>
                 <div className="grid gap-5 md:grid-cols-12 md:gap-1">
                   <Suspense fallback={<div className="h-[55vh] md:col-span-5 md:h-[46rem] bg-[#f4ebe0]" />}>
@@ -478,11 +485,12 @@ export default function App() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <p className="section-label mb-10">LUXURY COUPLE PORTRAIT SPREADS</p>
+                  <p className="section-label mb-10">MOMENTS OF DEVOTION</p>
                   <div className="mb-10 grid gap-3 md:grid-cols-12">
-                    <h2 className="text-3xl md:col-span-5 md:text-4xl">An Heirloom Of Memories</h2>
+                    <h2 className="text-3xl md:col-span-5 md:text-4xl">The Beauty of Becoming Us
+</h2>
                     <p className="max-w-md section-copy md:col-span-7 md:justify-self-end">
-                      Fashion-inspired portrait studies shaped with calm, natural luxury.
+                      Every ritual carries meaning. Every blessing becomes part of the story.
                     </p>
                   </div>
                 </motion.div>
@@ -504,7 +512,7 @@ export default function App() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <p className="section-label mb-10">WEDDING JOURNAL GRID</p>
+                  <p className="section-label mb-10">AATHMAN WEDDING CHRONICLES</p>
                   <div className="mb-10 max-w-2xl">
                     <h2 className="text-4xl md:text-5xl">
                       A Living Editorial Archive
@@ -622,33 +630,59 @@ export default function App() {
             <footer className="relative footer-panel border-t border-[#b7a07f40] px-5 py-16 md:px-12 md:py-20">
               <div className="flex w-full flex-col gap-10 md:flex-row md:justify-between">
                 <div>
-                  <p className="text-xs tracking-[0.24em] text-[#1b1b1b]" href="https://aathman-kirr.vercel.app/">
+                  <p className="text-xs tracking-[0.24em] text-[#1b1b1b]">
                     aathman studios
                   </p>
-                  <p className="mt-2 text-[10px] tracking-[0.18em] text-[#8b7864]"></p>
                 </div>
-                <div className="grid gap-2 text-sm text-[#2a2622]">
-                  <motion.a
-                    href="https://www.instagram.com/aathman_studios?igsh=dXM4a3Z6aTB3c2t6"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-[#8b7864] transition-colors"
-                    whileHover={{ color: '#8b7864' }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    aathmanstudios@instagram
-                  </motion.a>
-                  <motion.a
-                    href="mailto:aathmanstudios@gmail.com"
-                    className="hover:text-[#8b7864] transition-colors"
-                    whileHover={{ color: '#8b7864' }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    aathmanstudios@gmail.com
-                  </motion.a>
-                  <p className="text-xs">India | Europe | Worldwide</p>
-                  <p className="text-xs">+91 70229 06802</p>
+
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-3">
+                    <motion.a
+                      href="https://www.instagram.com/aathman_studios?igsh=dXM4a3Z6aTB3c2t6"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Instagram"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#b7a07f40] bg-[#f6f1e8] text-[#2a2622] transition-colors hover:bg-[#8b7864] hover:text-white"
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+                        <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm6.8-1.2a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" />
+                        <path d="M18.4 2H5.6A3.6 3.6 0 002 5.6v12.8A3.6 3.6 0 005.6 22h12.8a3.6 3.6 0 003.6-3.6V5.6A3.6 3.6 0 0018.4 2zm1.6 16.4a1.6 1.6 0 01-1.6 1.6H5.6a1.6 1.6 0 01-1.6-1.6V5.6A1.6 1.6 0 015.6 4h12.8a1.6 1.6 0 011.6 1.6v12.8z" />
+                      </svg>
+                    </motion.a>
+                    <motion.a
+                      href="mailto:aathmanstudios@gmail.com"
+                      aria-label="Email"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#b7a07f40] bg-[#f6f1e8] text-[#2a2622] transition-colors hover:bg-[#8b7864] hover:text-white"
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+                        <path d="M20.4 4H3.6C2.716 4 2 4.716 2 5.6v12.8C2 19.284 2.716 20 3.6 20h16.8c.884 0 1.6-.716 1.6-1.6V5.6c0-.884-.716-1.6-1.6-1.6zM12 12.45L4.35 6.82h15.3L12 12.45zM4.35 17.18V7.23l7.65 5.22 7.65-5.22v9.95H4.35z" />
+                        <path d="M6.2 6.82l5.8 4.05L17.8 6.82" opacity="0.6" />
+                      </svg>
+                    </motion.a>
+                    <motion.a
+                      href="https://www.youtube.com/@aathmanstudiosweddings"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="YouTube"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#b7a07f40] bg-[#f6f1e8] text-[#2a2622] transition-colors hover:bg-[#8b7864] hover:text-white"
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+                        <path d="M21.8 8.001a2.45 2.45 0 00-1.72-1.73C18.64 6 12 6 12 6s-6.63 0-8.07.27a2.45 2.45 0 00-1.72 1.73A25.14 25.14 0 001 12a25.14 25.14 0 00.5 3.999 2.45 2.45 0 001.72 1.73C5.37 18 12 18 12 18s6.63 0 8.07-.27a2.45 2.45 0 001.72-1.73A25.14 25.14 0 0023 12a25.14 25.14 0 00-.5-3.999zM9.75 14.425V9.575L14.5 12l-4.75 2.425z" />
+                      </svg>
+                    </motion.a>
+                  </div>
+                  <div className="flex flex-col gap-1 text-xs text-[#2a2622] opacity-80">
+                    <span>India | Worldwide</span>
+                    <span>+91 70229 06802</span>
+                  </div>
                 </div>
+
                 <nav aria-label="Footer">
                   <ul className="flex flex-col gap-2 text-sm text-[#2a2622] list-none p-0 m-0">
                     <li>
@@ -717,7 +751,7 @@ export default function App() {
                       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                       className="text-center py-20"
                     >
-                      <div className="max-w-2xl">
+                      <div className="mx-auto max-w-2xl">
                         <h2 className="text-4xl md:text-5xl text-[#111111] mb-6">Your story has been received.</h2>
                         <p className="text-lg text-[#2a2622] leading-relaxed mb-8">
                           And we cannot wait to frame it forever.

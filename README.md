@@ -122,13 +122,13 @@ The page is one continuous scroll, made up of the following sections in order (a
 |---|---------|--------|---------|
 | 1 | **Splash Screen** | — | 3-second animated intro (ambient video background + logo wordmark) shown once on load, then fades out |
 | 2 | **Hero** | — | Full-screen monochrome hero image, sticky top nav bar, tagline strip |
-| 3 | **Curated Wedding Mosaic** | `#mosaic` | Asymmetric editorial photo/video grid (8 tiles across a 12-col grid) |
+| 3 | **AATHMAN WEDDING JOURNAL** | `#mosaic` | Asymmetric editorial photo/video grid (8 tiles across a 12-col grid) |
 | 4 | **Black & White Emotional Sequence** | — | 3-image monochrome storytelling block |
-| 5 | **Signature Wedding Films** | `#films` | 3-up grid of film cards (poster image → click to play embedded video) |
-| 6 | **Editorial Film Spread** | — | 2-up large-format video card spread |
+| 5 | **Bound By Love, Blessed By Times** | `#films` | 3-up grid of film cards (poster image → click to play embedded video) |
+| 6 | **THE STORY EDITION** | — | 2-up large-format video card spread |
 | 7 | **Destination Wedding Stories** | `#stories` | Alternating image/text "journal" narrative blocks per destination |
-| 8 | **Luxury Couple Portrait Spreads** | — | 4-image portrait grid |
-| 9 | **Wedding Journal Grid** | `#journal` | 12-image tiled archive grid + closing video tile, each tagged with a destination label |
+| 8 | **MOMENTS OF DEVOTION** | — | 4-image portrait grid |
+| 9 | **AATHMAN WEDDING CHRONICLES** | `#journal` | 12-image tiled archive grid + closing video tile, each tagged with a destination label |
 | 10 | **Closing Editorial Image** | — | Full-bleed closing image + "Forever Begins Here" statement |
 | 11 | **Footer** | — | Brand mark, social/contact links, secondary nav |
 | 12 | **Booking / Contact** | `#begin` | Multi-step animated inquiry form → Formspree |
@@ -212,9 +212,9 @@ All content lives in **`src/data/media.js`**, exporting a single `mediaLibrary` 
 | `splash` | `{ video, poster }` | Splash screen background |
 | `hero` | `{ image, layered, blackAndWhite }` | Hero section, reused in mosaic/portraits |
 | `philosophy` | `{ image }` | Mosaic tile, contact section backdrop |
-| `mosaic` | `[{ id, image }]` (6 items) | Curated Wedding Mosaic grid |
-| `films` | `[{ id, title, couple, location, year, runtime, phrase, image, video }]` (3 items) | Signature Wedding Films |
-| `editorialVideoCards` | same shape as `films` (3 items) | Mosaic featured card, Editorial Film Spread, Journal closer |
+| `mosaic` | `[{ id, image }]` (6 items) | AATHMAN AATHMAN WEDDING CHRONICLES |
+| `films` | `[{ id, title, couple, location, year, runtime, phrase, image, video }]` (3 items) | Bound By Love, Blessed By Times |
+| `editorialVideoCards` | same shape as `films` (3 items) | Mosaic featured card, THE STORY EDITION, Journal closer |
 | `stories` | `[{ title, image }]` (2 items) | Destination Wedding Stories |
 | `monochrome` | `[image, image, image]` | Black & White Emotional Sequence |
 | `destinations` | `string[]` | Labels cycled across the Journal grid tiles |
