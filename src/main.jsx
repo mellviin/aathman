@@ -6,7 +6,7 @@ import App from './App.jsx'
 
 // Luxury smooth scrolling
 const lenis = new Lenis({
-  duration: 4.4,
+  duration: 3.4,
   smoothWheel: true,
   wheelMultiplier: 6,
   touchMultiplier: 4,

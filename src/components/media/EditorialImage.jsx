@@ -10,6 +10,7 @@ export const EditorialImage = memo(function EditorialImage({
   priority = false,
   overlay = false,
   monochrome = false,
+  imgClassName = '',
   children,
   disableAnimation = false,
 }) {
@@ -24,6 +25,7 @@ export const EditorialImage = memo(function EditorialImage({
       priority={priority}
       monochrome={monochrome}
       overlay={overlay}
+      imgClassName={imgClassName}
     >
       {children}
     </OptimizedImage>

@@ -305,10 +305,10 @@ export default function App() {
                   </Suspense>
                   <EditorialImage image={mediaLibrary.mosaic[3].image} alt="Mosaic four" className="h-62 md:col-span-4 md:h-[30rem]" />
                   <EditorialImage image={mediaLibrary.mosaic[4].image} alt="Mosaic five" className="h-52 md:col-span-4 md:h-[30rem]" />
-                  <EditorialImage image={mediaLibrary.mosaic[5].image} alt="Mosaic six" className="h-52 md:col-span-2 md:h-[38rem]" />
+                  {/*<EditorialImage image={mediaLibrary.mosaic[5].image} alt="Mosaic six" className="h-52 md:col-span-2 md:h-[38rem]" />*/}
                   {/* Previously used undefined mediaLibrary.hero.layered — now uses hero.layered (defined in media.js) */}
-                  <EditorialImage image={mediaLibrary.hero.layered} alt="Mosaic seven" className="col-span-2 h-56 md:col-span-6 md:h-[38rem]" />
-                  <EditorialImage image={mediaLibrary.philosophy.image1} alt="Mosaic eight" className="col-span-2 h-56 md:col-span-4 md:h-[38rem]" />
+                  {/*<EditorialImage image={mediaLibrary.hero.layered} alt="Mosaic seven" className="col-span-2 h-56 md:col-span-6 md:h-[38rem]" />*/}
+                  {/*<EditorialImage image={mediaLibrary.philosophy.image1} alt="Mosaic eight" className="col-span-2 h-56 md:col-span-4 md:h-[38rem]" />*/}
                 </div>
               </div>
             </section>
@@ -487,10 +487,10 @@ export default function App() {
                   </div>
                 </motion.div>
                 <div className="grid gap-1 md:grid-cols-12 md:grid-rows-2 md:gap-1">
-                  <EditorialImage image={mediaLibrary.philosophy.image} alt="Portrait spread two" className="h-[36vh] md:col-span-5 md:h-[32rem]" />
-                  <EditorialImage image={mediaLibrary.hero.image} alt="Portrait spread three" className="h-[36vh] md:col-span-7 md:h-[32rem]" />
-                  <EditorialImage image={mediaLibrary.booking.image} alt="Portrait spread four" className="h-[56vh] md:col-span-8 md:h-[24rem]" />
-                  <EditorialVideo video={mediaLibrary.booking.image1} />
+                  <EditorialImage image={mediaLibrary.santosh.image1} alt="Portrait spread two" className="h-[36vh] md:col-span-5 md:h-[38rem]" />
+                  <EditorialImage image={mediaLibrary.santosh.image3} alt="Portrait spread three" className="h-[36vh] md:col-span-7 md:h-[38rem]" />
+                  <EditorialImage image={mediaLibrary.santosh.image2} alt="Portrait spread four" className="h-[56vh] md:col-span-8 md:h-[94rem] md:-mt-112" imgClassName="object-contain" />
+                  <EditorialImage image={mediaLibrary.santosh.image4} alt="Portrait spread five" className="h-[56vh] md:col-span-4 md:h-[94rem] md:-mt-112" />
                 </div>
               </div>
             </section>
@@ -519,18 +519,18 @@ export default function App() {
                 <div className="grid grid-cols-2 gap-1 md:grid-cols-3 md:gap-1">
                   {(() => {
                     const imageClasses = [
-                      "h-80 md:h-[34rem] md:col-span-3", // 1
+                      "h-80 md:h-[54rem] md:col-span-3", // 1
                       "h-72 md:h-[30rem]",               // 2
                       "h-96 md:h-[30rem]",               // 3
                       "h-72 md:h-[34rem]",               // 4
-                      "h-80 md:h-[28rem] md:-mt-0 md:translate-x-50 md:w-[62.5rem]",      // 5 (moves to end)
+                      "h-80 md:h-[31rem] md: col-span-2",      // 5 (moves to end)
                       "h-96 md:h-[46rem] md:-mt 10",     // 6
                       "h-72 md:h-[58rem] md:-mt-32",     // 7
                       "h-80 md:h-[58rem] md:-mt-32",     // 8
                       "h-96 md:h-[50rem] md:mt-0",       // 9
-                      "h-72 md:h-[34rem] md:w-[50rem] md:translate-x-0",               // 10
-                      "h-80 md:h-[42rem] md:col-span-2 md:w-[62.5rem] md:translate-x-50", // 11
-                      "h-72 md:h-[36rem] md:w-[50rem] md:-mt-32 md:translate-x-0",               // 12
+                      "h-72 md:h-[34rem]",               // 10
+                      "h-80 md:h-[42rem] md:col-span-2", // 11
+                      "h-72 md:h-[39rem] md:-mt-32",               // 12
                     ]
 
                     // Move the original 5th image to the end
@@ -600,6 +600,8 @@ export default function App() {
                   video={mediaLibrary.closing.video}
                   thumbnail={mediaLibrary.closing.thumbnail}
                   className="h-[80vh] w-full md:h-[90vh]"
+                  muted={true}
+                  showControls={true}
                 />
                 <motion.div
                   initial={{ opacity: 0, y: 24 }}

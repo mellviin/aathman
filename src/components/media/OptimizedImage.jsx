@@ -60,6 +60,7 @@ export const OptimizedImage = memo(function OptimizedImage({
   sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw',
   monochrome = false,
   overlay = false,
+  imgClassName = '',
   children,
 }) {
   const [loaded, setLoaded] = useState(false)
@@ -99,7 +100,7 @@ export const OptimizedImage = memo(function OptimizedImage({
           fetchPriority={priority ? 'high' : 'low'}
           decoding={priority ? 'sync' : 'async'}
           sizes={sizes}
-          className="h-full w-full object-cover object-center"
+          className={`h-full w-full object-cover object-center ${imgClassName}`.trim()}
           onLoad={() => setLoaded(true)}
           style={{
             opacity: loaded ? 1 : 0,

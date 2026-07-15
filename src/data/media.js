@@ -58,6 +58,12 @@ import video5         from '../assets/videos/01_.mp4'
 import video6         from '../assets/videos/07.mp4'
 import video7         from '../assets/videos/08.mp4'
 
+//hierloom
+import heirloom1      from '../assets/images/portraits/1.jpg'
+import heirloom2      from '../assets/images/portraits/2.jpg'
+import heirloom3      from '../assets/images/portraits/3.jpg'
+import heirloom4      from '../assets/images/portraits/4.jpg'
+
 
 // Temporary Pexels placeholders used until local assets are imported above.
 const _HERO_IMAGE    = heroImage
@@ -97,6 +103,11 @@ const _VIDEO_4     = video4
 const _VIDEO_5     = video5
 const _VIDEO_6     = video6
 const _VIDEO_7     = video7
+//hireloom
+const _HEIRLOOM_1  = heirloom1
+const _HEIRLOOM_2  = heirloom2
+const _HEIRLOOM_3  = heirloom3
+const _HEIRLOOM_4  = heirloom4
 
 
 // Splash video — replace with your own hosted asset when available.
@@ -223,14 +234,14 @@ export const mediaLibrary = {
     _MOS_4,
     _port_4,
     _DS_1,
-    _DS_2,
+    _BW_5,
     _MOS_5,
     _BW_1,
     _BW_4,
     _port_3,
-    _BW_5,
-    _port_5,
-    _port_6,
+    _DS_2,
+    _HEIRLOOM_3,
+    _HEIRLOOM_1,
   ],
 
   closing: {
@@ -249,6 +260,13 @@ export const mediaLibrary = {
     gif: _LOGO_GIF,
     image: _LOGO,
   },
+
+  santosh: {
+    image1: _HEIRLOOM_1,
+    image2: _HEIRLOOM_2,
+    image3: _HEIRLOOM_3,
+    image4: _HEIRLOOM_4,
+  }
 }
 
 
