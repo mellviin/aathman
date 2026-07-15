@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { EditorialImage } from './components/media/EditorialImage'
 import { EditorialVideo } from './components/media/EditorialVideo'
@@ -496,7 +496,6 @@ export default function App() {
             </section>
 
             {/* ── Journal Grid ── */}
-            {/* id="journal" added so the Journal nav link resolves correctly */}
             <section id="journal" className="relative px-5 py-20 md:px-12 md:py-8">
               <div className="w-full">
                 <motion.div
@@ -507,40 +506,89 @@ export default function App() {
                 >
                   <p className="section-label mb-10">WEDDING JOURNAL GRID</p>
                   <div className="mb-10 max-w-2xl">
-                    <h2 className="text-4xl md:text-5xl">A Living Editorial Archive</h2>
+                    <h2 className="text-4xl md:text-5xl">
+                      A Living Editorial Archive
+                    </h2>
                     <p className="section-copy">
-                      Small chapters of movement, devotion, and celebration across destinations.
+                      Small chapters of movement, devotion, and celebration across
+                      destinations.
                     </p>
                   </div>
                 </motion.div>
+
                 <div className="grid grid-cols-2 gap-1 md:grid-cols-3 md:gap-1">
-                  {journalFrames.slice(0, 12).map((image, index) => (
-                    <EditorialImage
-                      // image URL is stable; index prevents collisions when the same
-                      // URL appears more than once across mosaic + films + stories
-                      key={`journal-${index}-${image}`}
-                      image={image}
-                      alt={`Wedding journal frame — ${mediaLibrary.destinations[index % mediaLibrary.destinations.length]}`}
-                      className={`h-52 md:h-72 ${index % 5 === 0 ? 'md:col-span-2' : ''}`}
-                      monochrome={index % 6 === 0}
-                    >
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                        className="absolute bottom-2 left-2 border border-[#f0e9dc80] bg-[#1111113a] px-2 py-1 text-[9px] tracking-[0.15em] text-[#f5eee2]"
-                      >
-                        {mediaLibrary.destinations[index % mediaLibrary.destinations.length]}
-                      </motion.div>
-                    </EditorialImage>
-                  ))}
-                  <Suspense fallback={<div className="col-span-2 h-56 md:col-span-2 md:h-72 bg-[#f4ebe0]" />}>
-                    <EditorialVideoCard
-                      item={mediaLibrary.editorialVideoCards[0]}
-                      className="col-span-2 h-56 md:col-span-2 md:h-72"
-                    />
-                  </Suspense>
+                  {(() => {
+                    const imageClasses = [
+                      "h-80 md:h-[34rem] md:col-span-3", // 1
+                      "h-72 md:h-[30rem]",               // 2
+                      "h-96 md:h-[30rem]",               // 3
+                      "h-72 md:h-[34rem]",               // 4
+                      "h-80 md:h-[28rem] md:-mt-0 md:translate-x-50 md:w-[62.5rem]",      // 5 (moves to end)
+                      "h-96 md:h-[46rem] md:-mt 10",     // 6
+                      "h-72 md:h-[58rem] md:-mt-32",     // 7
+                      "h-80 md:h-[58rem] md:-mt-32",     // 8
+                      "h-96 md:h-[50rem] md:mt-0",       // 9
+                      "h-72 md:h-[34rem] md:w-[50rem] md:translate-x-0",               // 10
+                      "h-80 md:h-[42rem] md:col-span-2 md:w-[62.5rem] md:translate-x-50", // 11
+                      "h-72 md:h-[36rem] md:w-[50rem] md:-mt-32 md:translate-x-0",               // 12
+                    ]
+
+                    // Move the original 5th image to the end
+                    const orderedImages = [
+                      ...journalFrames.slice(0, 4),
+                      ...journalFrames.slice(5, 12),
+                      journalFrames[4],
+                    ]
+
+                    const orderedClasses = [
+                      ...imageClasses.slice(0, 4),
+                      ...imageClasses.slice(5, 12),
+                      imageClasses[4],
+                    ]
+
+                    return orderedImages.map((image, index) => (
+                      <React.Fragment key={`journal-${index}`}>
+                        {/* Insert video as item #5 */}
+                        {index === 4 && (
+                          <Suspense
+                            fallback={
+                              <div className="col-span-2 h-56 md:col-span-2 md:h-[42rem] bg-[#f4ebe0]" />
+                            }
+                          >
+                            <EditorialVideoCard
+                              item={mediaLibrary.editorialVideoCards[0]}
+                              className="col-span-2 h-56 md:col-span-2 md:h-[42rem] md:-mt-16"
+                            />
+                          </Suspense>
+                        )}
+
+                        <EditorialImage
+                          image={image}
+                          alt={`Wedding journal frame — ${
+                            mediaLibrary.destinations[
+                              index % mediaLibrary.destinations.length
+                            ]
+                          }`}
+                          className={orderedClasses[index]}
+                          monochrome={index % 6 === 0}
+                        >
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="absolute bottom-2 left-2 border border-[#f0e9dc80] bg-[#1111113a] px-2 py-1 text-[9px] tracking-[0.15em] text-[#f5eee2]"
+                          >
+                            {
+                              mediaLibrary.destinations[
+                                index % mediaLibrary.destinations.length
+                              ]
+                            }
+                          </motion.div>
+                        </EditorialImage>
+                      </React.Fragment>
+                    ))
+                  })()}
                 </div>
               </div>
             </section>
